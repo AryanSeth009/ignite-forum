@@ -30,6 +30,9 @@ export const sponsorURL = env.NEXT_PUBLIC_PAYLOAD_URI + '/api/sponsors?limit=20'
     Fetches sponsors from Payload CMS and transforms them into the required format.
 */
 export async function fetchSponsors(): Promise<Sponsor[]> {
+    if (!env.NEXT_PUBLIC_PAYLOAD_URI) {
+        return [];
+    }
     try {
         // Use fetcher.get.query to perform a GET request.
         const data = await fetcher.get.query([sponsorURL, { cache: 'no-store', prefixUrl: '' }]);

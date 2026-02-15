@@ -8,6 +8,9 @@ const resolveImageUrl = (img?: ImageData): ImageData | undefined =>
     img?.url ? { ...img, url: env.NEXT_PUBLIC_PAYLOAD_URI + img.url } : undefined;
 
 export async function fetchNotification(): Promise<NotificationData | null> {
+    if (!env.NEXT_PUBLIC_PAYLOAD_URI) {
+        return null;
+    }
     try {
         const data = await fetcher.get.query([
             notificationURL,

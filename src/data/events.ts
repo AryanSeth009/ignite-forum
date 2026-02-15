@@ -54,10 +54,24 @@ export type PayloadEvent = {
 // Payload URL
 export const eventURL = env.NEXT_PUBLIC_PAYLOAD_URI + '/api/events?limit=100';
 
+const SAMPLE_EVENTS: Event[] = [
+    {
+        title: 'Welcome Session',
+        date: { year: 2026, month: 'FEB', day: 15, timestamp: new Date('2026-02-15T10:00:00Z') },
+        time: '10:00 AM - 12:00 PM',
+        location: 'Main Auditorium',
+        details: 'Kick-off session introducing the department activities and roadmap.',
+        image: '/images/events/upcoming-event.jpg',
+    },
+];
+
 /*
     Fetches events from Payload CMS and transforms them into the required format.
 */
 export async function fetchEvents(): Promise<Event[]> {
+    if (!env.NEXT_PUBLIC_PAYLOAD_URI) {
+        return SAMPLE_EVENTS;
+    }
     try {
         // Fetching event data from payload with fetcher
         const data = await fetcher.get.query([eventURL, { cache: 'no-store', prefixUrl: '' }]);

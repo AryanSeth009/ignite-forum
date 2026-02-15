@@ -1,1 +1,5 @@
-export { auth as middleware } from '@/auth';
+import type { NextRequest } from 'next/server';
+
+export function middleware(_req: NextRequest) {
+    return;
+}

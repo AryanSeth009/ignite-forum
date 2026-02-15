@@ -6,9 +6,10 @@ export type LinkType = {
 
 const LINKS: LinkType[] = [
     { title: 'About', href: '/about' },
+    { title: 'Activities', href: '/activities' },
     { title: 'Events', href: '/events' },
-    { title: 'Sponsors', href: '/sponsors' },
-    { title: 'Open Source', href: '/open-source' },
+    { title: 'Teams', href: '/teams' },
+    { title: 'Gallery', href: '/gallery' },
     // {
     //     title: 'More',
     //     dropdown: [

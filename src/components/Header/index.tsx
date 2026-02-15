@@ -1,60 +1,28 @@
-import { auth } from '@/auth';
-import { checkUserExists } from '@/server/check-user-exists';
-import { verifyMembershipPayment } from '@/server/verify-membership-payment';
-import md5 from 'md5';
-import HeaderClient from './HeaderClient';
-import HeaderMobileClient from './HeaderMobileClient';
+import LINKS from '@/constants/links';
+import Link from 'next/link';
 
-const getHeaderData = async () => {
-    // Function to get the Gravatar URL based on user's email
-    const getGravatarUrl = (email: string) => {
-        const gravatarHash = md5(email.trim().toLowerCase());
-        return `https://www.gravatar.com/avatar/${gravatarHash}?d=identicon`;
-    };
-
-    const session = await auth();
-    if (!session?.user) {
-        return { isSignedIn: false as const };
-    }
-
-    let nextStep: 'signup' | 'payment' | null = null;
-
-    const userId = session.user.id ?? '';
-    if (userId) {
-        const exists = await checkUserExists(userId);
-        if (exists) {
-            const membershipPayment = await verifyMembershipPayment(userId);
-            if (!membershipPayment.paid) {
-                nextStep = 'payment';
-            }
-        } else {
-            nextStep = 'signup';
-        }
-    }
-
-    // Generate avatar URL using the email from the token
-    const avatar = session.user?.email ? getGravatarUrl(session.user?.email) : '';
-
-    return {
-        isSignedIn: true as const,
-        avatar: avatar,
-        isCommittee: session?.user
-            ? ((session.user.isCommittee as boolean | undefined) ?? false)
-            : false,
-        isAdmin: session?.user ? ((session.user.isAdmin as boolean | undefined) ?? false) : false,
-        nextStep,
-        isMember: nextStep === null,
-    };
-};
-export type HeaderData = Awaited<ReturnType<typeof getHeaderData>>;
-
-export default async function Header() {
-    const headerData = await getHeaderData();
-
+export default function Header() {
     return (
-        <>
-            <HeaderClient data={headerData} className="hidden lg-xl:block" />
-            <HeaderMobileClient data={headerData} className="lg-xl:hidden" />
-        </>
+        <header className="fixed z-[9999] w-full">
+            <div className="mx-auto mt-8 w-responsive">
+                <div className="flex items-center justify-between gap-8 border-4 border-black bg-white px-8 py-4 text-grey">
+                    <Link href="/" className="py-2 font-black">
+                        Ignite Forum
+                    </Link>
+                    <nav className="flex gap-4">
+                        {LINKS.map((link) => (
+                            <Link
+                                key={link.title}
+                                href={link.href ?? '#'}
+                                className="py-2 hover:underline"
+                            >
+                                {link.title}
+                            </Link>
+                        ))}
+                    </nav>
+                </div>
+                <div className="relative -right-[0.5rem] -top-[7.5rem] -z-10 h-[8rem] w-responsive border-4 border-black bg-white lg:-top-[6rem] lg:h-[6.5rem] md-lg:-top-[4.75rem] md-lg:h-[5.25rem]" />
+            </div>
+        </header>
     );
 }
