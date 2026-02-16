@@ -16,4 +16,11 @@ export const env = {
     NEXT_PUBLIC_PAYLOAD_URI: process.env.NEXT_PUBLIC_PAYLOAD_URI ?? '',
 
     MONGODB_URI: process.env.MONGODB_URI ?? 'mongodb://127.0.0.1:27017/ignite_forum_department',
+
+    REDIS_URI: process.env.REDIS_URI,
+    SMTP_HOST: process.env.SMTP_HOST,
+    SMTP_USER: process.env.SMTP_USER,
+    SMTP_PASS: process.env.SMTP_PASS,
+    SMTP_EMAIL_ADDRESS: process.env.SMTP_EMAIL_ADDRESS,
+    SQUARE_ACCESS_TOKEN: process.env.SQUARE_ACCESS_TOKEN,
 };

@@ -9,11 +9,7 @@ import GalleryView from './GalleryView';
 import './tailwind-overrides.css';
 import type { Photo } from './types';
 
-interface GalleryProps {
-    setCurrentTitle: (title: string) => void;
-}
-
-export default function Gallery({ setCurrentTitle }: GalleryProps) {
+export default function Gallery() {
     const [photos, setPhotos] = useState<Photo[]>([]);
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
     const [positions, setPositions] = useState<{
@@ -98,14 +94,10 @@ export default function Gallery({ setCurrentTitle }: GalleryProps) {
             setPositions(newPositions);
 
             if (selectedFolder && photos.length) {
-                const images = galleriesByFolder[selectedFolder]?.slice(0, numImages) || [];
-                const displayName = images[0]?.eventName
-                    ?.replace(/\bS[12]\b/g, '') // Remove "S1" and "S2"
-                    ?.trim();
-                setCurrentTitle(displayName);
+                // Title logic removed - displayName unused
             }
         }
-    }, [mode, selectedFolder, galleriesByFolder, numImages, photos.length, setCurrentTitle]);
+    }, [mode, selectedFolder, galleriesByFolder, numImages, photos.length]);
 
     const shufflePhotos = () => {
         const allShuffledPhotos = [...photos.filter((p) => p.folder === selectedFolder)]
@@ -220,7 +212,6 @@ export default function Gallery({ setCurrentTitle }: GalleryProps) {
                             shufflePhotos={shufflePhotos}
                             animateToggle={animateToggle}
                             handleAnimateToggle={handleAnimateToggle}
-                            setCurrentTitle={setCurrentTitle}
                             numImages={numImages}
                             setNumImages={setNumImages}
                             setViewMode={setViewMode}

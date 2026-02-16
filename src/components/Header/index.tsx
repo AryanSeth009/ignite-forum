@@ -1,6 +1,16 @@
 import LINKS from '@/constants/links';
 import Link from 'next/link';
 
+export type HeaderNextStep = 'signup' | 'payment' | null;
+
+export type HeaderData = {
+    isSignedIn: boolean;
+    nextStep: HeaderNextStep;
+    isCommittee: boolean;
+    isAdmin: boolean;
+    avatar: string | null;
+};
+
 export default function Header() {
     return (
         <header className="fixed z-[9999] w-full">

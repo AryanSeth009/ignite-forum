@@ -57,7 +57,7 @@ export default function StepTwo() {
             form.setValue('firstName', String(session.user.firstName));
             form.setValue('lastName', String(session.user.lastName));
         }
-    }, [session?.user]);
+    }, [session, form]);
 
     const { nextStep } = useJoinUsStep();
     const handleContinue = form.handleSubmit((formData) => {

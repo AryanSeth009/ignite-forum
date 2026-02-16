@@ -1,6 +1,6 @@
 import Button from '@/components/Button';
 import Dropdown from '@/components/Dropdown';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { FaArrowLeft } from 'react-icons/fa';
 
 interface GalleryControlsProps {
@@ -9,7 +9,6 @@ interface GalleryControlsProps {
     shufflePhotos: () => void;
     animateToggle: boolean;
     handleAnimateToggle: () => void;
-    setCurrentTitle: (title: string) => void;
     numImages: number;
     setNumImages: (num: number) => void;
     viewMode: 'pile' | 'standard';
@@ -22,7 +21,6 @@ export default function GalleryControls({
     shufflePhotos,
     animateToggle,
     handleAnimateToggle,
-    setCurrentTitle,
     numImages,
     setNumImages,
     viewMode,
@@ -53,10 +51,7 @@ export default function GalleryControls({
             {/* Desktop/Tablet */}
             <div className="relative hidden h-full w-full flex-col items-start justify-center gap-8 text-grey md:flex">
                 <Button
-                    onClick={() => {
-                        setCurrentTitle('Photo Gallery');
-                        setMode('overview');
-                    }}
+                    onClick={() => setMode('overview')}
                     type="button"
                     colour="orange"
                     className="flex items-center gap-2"
@@ -102,10 +97,7 @@ export default function GalleryControls({
             {/* Mobile */}
             <div className="fixed bottom-0 left-0 right-0 z-20 flex h-16 items-center justify-around border-t border-gray-300 bg-white px-2 text-grey shadow-inner md:hidden">
                 <Button
-                    onClick={() => {
-                        setCurrentTitle('Photo Gallery');
-                        setMode('overview');
-                    }}
+                    onClick={() => setMode('overview')}
                     type="button"
                     size="small"
                     colour="orange"

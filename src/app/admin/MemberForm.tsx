@@ -5,7 +5,25 @@ import { fetcher } from '@/lib/fetcher';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import useSWRMutation from 'swr/mutation';
-import type { Member } from './page';
+
+type Member = {
+    id: string;
+    email: string;
+    phoneNumber: string | null;
+    firstName: string;
+    lastName: string;
+    studentStatus: string;
+    studentId: string | null;
+    gender: string;
+    ageBracket: string;
+    degree: string | null;
+    studentType: string | null;
+    welcomeEmailSent: boolean | null;
+    membershipExpiresAt: Date | null;
+    createdAt: string;
+    updatedAt: string;
+    paid: boolean;
+};
 
 const getMemberStr = (member: Member) => `${member.email} - ${member.firstName} ${member.lastName}`;
 

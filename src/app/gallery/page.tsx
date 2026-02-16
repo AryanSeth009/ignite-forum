@@ -10,7 +10,7 @@ export default function GalleryPage() {
                 <Title colour="purple">{currentTitle}</Title>
             </div>
             <section className="w-full">
-                <Gallery setCurrentTitle={() => {}} />
+                <Gallery />
             </section>
         </main>
     );

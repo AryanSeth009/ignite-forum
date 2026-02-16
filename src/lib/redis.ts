@@ -6,11 +6,11 @@ export const redisClient = env.REDIS_URI
     : {
           connect: async () => {},
           ping: async () => 'PONG',
-          get: async (key: string) => null,
-          set: async (key: string, value: string) => {},
-          hSet: async (key: string, values: Record<string, string>) => {},
-          hGet: async (key: string, field: string) => {},
-          del: async (key: string) => {},
+          get: async (_key: string) => null,
+          set: async (_key: string, _value: string) => {},
+          hSet: async (_key: string, _values: Record<string, string>) => {},
+          hGet: async (_key: string, _field: string) => {},
+          del: async (_key: string) => {},
       };
 
 if (env.REDIS_URI) {
