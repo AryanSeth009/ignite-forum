@@ -1,6 +1,7 @@
 import Title from '@/components/Title';
 import type { Metadata } from 'next';
 import Contact from './Contact';
+import ContactForm from './ContactForm';
 import Sponsorship from './Sponsorship';
 
 export const metadata: Metadata = {
@@ -16,6 +17,7 @@ export default function ContactPage() {
                 </div>
                 <div className="space-y-8 md:space-y-20">
                     <Contact />
+                    <ContactForm />
                     <Sponsorship />
                 </div>
             </div>

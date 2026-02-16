@@ -1,4 +1,3 @@
-import { env } from '@/env.mjs';
 import { fetcher } from '@/lib/fetcher';
 
 type Month =
@@ -51,48 +50,30 @@ export type PayloadEvent = {
     };
 };
 
-// Payload URL
-export const eventURL = env.NEXT_PUBLIC_PAYLOAD_URI + '/api/events?limit=100';
-
-const SAMPLE_EVENTS: Event[] = [
-    {
-        title: 'Welcome Session',
-        date: { year: 2026, month: 'FEB', day: 15, timestamp: new Date('2026-02-15T10:00:00Z') },
-        time: '10:00 AM - 12:00 PM',
-        location: 'Main Auditorium',
-        details: 'Kick-off session introducing the department activities and roadmap.',
-        image: '/images/events/upcoming-event.jpg',
-    },
-];
+type EventDto = Omit<Event, 'date'> & {
+    date: { year: number; month: Month; day: number; timestamp: string };
+};
 
 /*
     Fetches events from Payload CMS and transforms them into the required format.
 */
 export async function fetchEvents(): Promise<Event[]> {
-    if (!env.NEXT_PUBLIC_PAYLOAD_URI) {
-        return SAMPLE_EVENTS;
-    }
     try {
-        // Fetching event data from payload with fetcher
-        const data = await fetcher.get.query([eventURL, { cache: 'no-store', prefixUrl: '' }]);
+        const data = (await fetcher.get.query([
+            'events',
+            { cache: 'no-store', prefixUrl: '' },
+        ])) as EventDto[];
 
-        const payloadData = data.docs;
-        const EVENTS: Event[] = [];
+        const events = (data || []).map((e) => ({
+            ...e,
+            date: {
+                ...e.date,
+                timestamp: new Date(e.date.timestamp),
+            },
+        }));
 
-        // Process and parse events
-        for (const docNum in payloadData) {
-            const newEvent = parseEvents(payloadData[docNum]);
-            EVENTS.push(newEvent);
-        }
-
-        // Sort events by date (ascending)
-        EVENTS.sort((a, b) => {
-            const dateA = new Date(`${a.date.year}-${a.date.month}-${a.date.day}`);
-            const dateB = new Date(`${b.date.year}-${b.date.month}-${b.date.day}`);
-            return dateA.getTime() - dateB.getTime();
-        });
-
-        return EVENTS;
+        events.sort((a, b) => a.date.timestamp.getTime() - b.date.timestamp.getTime());
+        return events;
     } catch (error) {
         console.error('Error fetching events:', error);
         return [];
@@ -163,8 +144,6 @@ export const parseEvents = (raw: PayloadEvent): Event => {
             raw.link && raw.link.Link
                 ? { href: new URL(raw.link.Link), text: raw.link.displayText }
                 : undefined,
-        image: raw.banner
-            ? `${env.NEXT_PUBLIC_PAYLOAD_URI}${raw.banner.url}`
-            : 'public/images/events/upcoming-event.jpg', // Image is in the form of url (Needs a seperate API call)
+        image: raw.banner ? raw.banner.url : 'public/images/events/upcoming-event.jpg',
     };
 };

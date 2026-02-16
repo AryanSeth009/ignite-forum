@@ -1,4 +1,3 @@
-import { env } from '@/env.mjs';
 import { fetcher } from '@/lib/fetcher';
 
 export type Gallery = {
@@ -33,38 +32,19 @@ export type PayloadGallery = {
     };
 };
 
-// Payload URL
-export const galleryURL = env.NEXT_PUBLIC_PAYLOAD_URI + '/api/gallery?limit=100';
-
-const SAMPLE_GALLERIES: Gallery[] = [
-    {
-        eventName: 'Department Highlights',
-        eventDate: { year: 2026, month: 2, day: 15 },
-        images: [],
-    },
-];
+type GalleryDto = Gallery;
 
 /*
     Fetches galleries from Payload CMS and transforms them into the required format.
 */
 export async function fetchGalleries(): Promise<Gallery[]> {
-    if (!env.NEXT_PUBLIC_PAYLOAD_URI) {
-        return SAMPLE_GALLERIES;
-    }
     try {
-        // Fetching gallery data from payload with fetcher
-        const data = await fetcher.get.query([galleryURL, { cache: 'no-store', prefixUrl: '' }]);
+        const data = (await fetcher.get.query([
+            'gallery',
+            { cache: 'no-store', prefixUrl: '' },
+        ])) as GalleryDto[];
 
-        const payloadData = data.docs;
-        const GALLERIES: Gallery[] = [];
-
-        // Process and parse galleries
-        for (const docNum in payloadData) {
-            const newGallery = parseGalleries(payloadData[docNum]);
-            GALLERIES.push(newGallery);
-        }
-
-        return GALLERIES;
+        return data || [];
     } catch (error) {
         console.error('Error fetching galleries:', error);
         return [];
@@ -94,7 +74,7 @@ export const parseGalleries = (raw: PayloadGallery): Gallery => {
         images: Array.isArray(raw.images)
             ? raw.images
                   .map((image) => ({
-                      url: `${env.NEXT_PUBLIC_PAYLOAD_URI}${image.url}`,
+                      url: image.url,
                       width: image.width,
                       height: image.height,
                   }))
