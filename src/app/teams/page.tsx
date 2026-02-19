@@ -219,7 +219,8 @@ export default function TeamsPage() {
                         {/* Close Button */}
                         <button
                             onClick={closeModal}
-                            className="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-600 transition-colors hover:bg-gray-200"
+                            /* className="absolute right-4 top-3 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-600 transition-colors hover:bg-gray-300" */
+                            className="absolute right-4 top-3 z-10 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-gray-100 text-gray-600 transition-all hover:scale-105 hover:bg-gray-300 active:scale-95"
                             aria-label="Close modal"
                         >
                             <svg
@@ -270,7 +271,7 @@ export default function TeamsPage() {
                                 <h2 className="text-3xl font-bold text-gray-900">
                                     {selectedTeam.name} Team
                                 </h2>
-                                <span className="rounded-full bg-indigo-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-indigo-800">
+                                <span className="mr-5 rounded-full bg-indigo-100 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-indigo-800">
                                     {selectedTeam.members.length} Members
                                 </span>
                             </div>
