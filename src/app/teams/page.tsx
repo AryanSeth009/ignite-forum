@@ -1,7 +1,8 @@
 'use client';
 
+import gsap from 'gsap';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useRef, useLayoutEffect } from 'react';
 
 interface President {
     name: string;
@@ -205,6 +206,58 @@ const TEAMS_DATA: TeamData[] = [
 
 export default function TeamsPage() {
     const [selectedTeam, setSelectedTeam] = useState<TeamData | null>(null);
+    const [originRect, setOriginRect] = useState<DOMRect | null>(null);
+    const modalRef = useRef<HTMLDivElement | null>(null);
+    const overlayRef = useRef<HTMLDivElement | null>(null);
+
+    useLayoutEffect(() => {
+        if (selectedTeam && originRect && modalRef.current && overlayRef.current) {
+            const ctx = gsap.context(() => {
+                const finalRect = modalRef.current!.getBoundingClientRect();
+
+                // Calculate center points
+                const originCenterX = originRect.left + originRect.width / 2;
+                const originCenterY = originRect.top + originRect.height / 2;
+
+                const finalCenterX = finalRect.left + finalRect.width / 2;
+                const finalCenterY = finalRect.top + finalRect.height / 2;
+
+                const deltaX = originCenterX - finalCenterX;
+                const deltaY = originCenterY - finalCenterY;
+
+                // Animate Overlay
+                gsap.fromTo(
+                    overlayRef.current,
+                    { opacity: 0 },
+                    { opacity: 1, duration: 0.4, ease: 'power2.out' }
+                );
+
+                // Animate Modal Content (Uniform Scale Concept)
+                // Start small (scale: 0) at the card's center position.
+                gsap.fromTo(
+                    modalRef.current,
+                    {
+                        x: deltaX,
+                        y: deltaY,
+                        scale: 0.1, // Start very small
+                        opacity: 0,
+                    },
+                    {
+                        x: 0,
+                        y: 0,
+                        scale: 1,
+                        opacity: 1,
+                        duration: 0.5,
+                        ease: 'back.out(1.2)', // Bouncy pop effect
+                        // ease: "power3.out", // Smooth alternative if bounce is too much
+                        transformOrigin: 'center center',
+                        clearProps: 'all',
+                    }
+                );
+            });
+            return () => ctx.revert();
+        }
+    }, [selectedTeam, originRect]);
 
     // Close modal handle
     const closeModal = () => setSelectedTeam(null);
@@ -234,6 +287,7 @@ export default function TeamsPage() {
                             alt={President.name}
                             fill
                             className="object-cover"
+                            sizes="(max-width: 768px) 100vw, 33vw"
                         />
                     </div>
 
@@ -253,7 +307,11 @@ export default function TeamsPage() {
                 {TEAMS_DATA.map((team) => (
                     <div
                         key={team.id}
-                        onClick={() => setSelectedTeam(team)}
+                        onClick={(e) => {
+                            const rect = e.currentTarget.getBoundingClientRect();
+                            setOriginRect(rect);
+                            setSelectedTeam(team);
+                        }}
                         className="group relative cursor-pointer overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-md transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
                     >
                         {/* Placeholder Icon/Image Area */}
@@ -287,13 +345,17 @@ export default function TeamsPage() {
             {/* Modal Overlay */}
             {selectedTeam && (
                 <div
-                    className="animate-in fade-in fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm transition-opacity duration-300"
+                    ref={overlayRef}
+                    className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm"
                     onClick={(e) => {
                         // Close if clicked on backdrop
                         if (e.target === e.currentTarget) closeModal();
                     }}
                 >
-                    <div className="animate-in zoom-in-95 relative flex max-h-[90vh] w-full max-w-4xl transform flex-col overflow-y-auto rounded-3xl bg-white shadow-2xl transition-all duration-300 md:flex-row">
+                    <div
+                        ref={modalRef}
+                        className="relative flex max-h-[90vh] w-full max-w-4xl transform flex-col overflow-y-auto rounded-3xl bg-white shadow-2xl md:flex-row"
+                    >
                         {/* Close Button */}
                         <button
                             onClick={closeModal}
