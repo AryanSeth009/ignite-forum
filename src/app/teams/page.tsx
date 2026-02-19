@@ -3,6 +3,12 @@
 import Image from 'next/image';
 import { useState } from 'react';
 
+interface President {
+    name: string;
+    role: string;
+    image: string;
+}
+
 interface TeamMember {
     name: string;
     role: string;
@@ -18,7 +24,12 @@ interface TeamData {
     members: TeamMember[];
 }
 
-// Dummy Data
+const President: President = {
+    name: 'Joe Francis',
+    role: 'President',
+    image: '/images/teams/president/head.jpg',
+};
+//Data of Members Ignite Club
 const TEAMS_DATA: TeamData[] = [
     {
         id: 'media',
@@ -26,15 +37,18 @@ const TEAMS_DATA: TeamData[] = [
         description: 'Capturing moments and spreading the word.',
         slug: 'media',
         head: {
-            name: 'Sarah Jenkins',
+            name: 'Anushka Moon',
             role: 'Media Head',
             image: '/images/teams/media/head.jpg',
         },
         members: [
-            { name: 'Alex M.', role: 'Senior Editor', image: '/images/teams/media/member1.jpg' },
-            { name: 'Jamie L.', role: 'Content Creator', image: '/images/teams/media/member2.jpg' },
-            { name: 'Sam P.', role: 'Photographer', image: '/images/teams/media/member3.jpg' },
-            { name: 'Chris T.', role: 'Social Media', image: '/images/teams/media/member4.jpg' },
+            {
+                name: 'Rudra Dalal',
+                role: 'Media Co-Head',
+                image: '/images/teams/media/member1.jpg',
+            },
+            { name: 'Om Tikle', role: 'Media Team', image: '/images/teams/media/member2.jpg' },
+            { name: 'Animesh Tajne', role: 'Media Team', image: '/images/teams/media/member3.jpg' },
         ],
     },
     {
@@ -43,26 +57,20 @@ const TEAMS_DATA: TeamData[] = [
         description: 'Creating comprehensive guides and records.',
         slug: 'documentation',
         head: {
-            name: 'David Chen',
+            name: 'Vedanti Adhe',
             role: 'Head of Documentation',
             image: '/images/teams/documentation/head.jpg',
         },
         members: [
             {
-                name: 'Emily R.',
-                role: 'Tech Writer',
+                name: 'Himangi Pardhi',
+                role: 'Documentation Team',
                 image: '/images/teams/documentation/member1.jpg',
             },
             {
-                name: 'Michael B.',
-                role: 'Archivist',
+                name: 'Neha Burele',
+                role: 'Documentation Team',
                 image: '/images/teams/documentation/member2.jpg',
-            },
-            { name: 'Lisa K.', role: 'Editor', image: '/images/teams/documentation/member3.jpg' },
-            {
-                name: 'Tom H.',
-                role: 'Researcher',
-                image: '/images/teams/documentation/member4.jpg',
             },
         ],
     },
@@ -72,23 +80,31 @@ const TEAMS_DATA: TeamData[] = [
         description: 'Ensuring a welcoming experience for everyone.',
         slug: 'hospitality',
         head: {
-            name: 'Jessica Wong',
+            name: 'Samruddhi Barbakar',
             role: 'Head of Hospitality',
             image: '/images/teams/hospitality/head.jpg',
         },
         members: [
             {
-                name: 'Ryan G.',
-                role: 'Events Coord.',
+                name: 'Sakshi Bende',
+                role: 'Hospitality Team',
                 image: '/images/teams/hospitality/member1.jpg',
             },
             {
-                name: 'Sophie L.',
-                role: 'Guest Relations',
+                name: 'Anushka Chinchulkar',
+                role: 'Hospitality Team',
                 image: '/images/teams/hospitality/member2.jpg',
             },
-            { name: 'Mark D.', role: 'Logistics', image: '/images/teams/hospitality/member3.jpg' },
-            { name: 'Anna F.', role: 'Planner', image: '/images/teams/hospitality/member4.jpg' },
+            {
+                name: 'Kankshi Patle',
+                role: 'Hospitality Team',
+                image: '/images/teams/hospitality/member3.jpg',
+            },
+            {
+                name: 'Ojas Bramhane',
+                role: 'Hospitality Team',
+                image: '/images/teams/hospitality/member4.jpg',
+            },
         ],
     },
     {
@@ -97,19 +113,26 @@ const TEAMS_DATA: TeamData[] = [
         description: 'Driving innovation and technical excellence.',
         slug: 'technical',
         head: {
-            name: 'Robert Fox',
-            role: 'Technical Lead',
+            name: 'Aryan Seth',
+            role: 'Technical Head',
             image: '/images/teams/technical/head.jpg',
         },
         members: [
-            { name: 'Cody F.', role: 'DevOps', image: '/images/teams/technical/member1.jpg' },
             {
-                name: 'Esther H.',
-                role: 'Frontend Dev',
+                name: 'Rugved Kadu',
+                role: 'Technical Team',
+                image: '/images/teams/technical/member1.jpg',
+            },
+            {
+                name: 'Rachit Guha',
+                role: 'Technical Team',
                 image: '/images/teams/technical/member2.jpg',
             },
-            { name: 'Guy H.', role: 'Backend Dev', image: '/images/teams/technical/member3.jpg' },
-            { name: 'Jenny W.', role: 'QA Engineer', image: '/images/teams/technical/member4.jpg' },
+            {
+                name: 'Sudeep Kuralkar',
+                role: 'Technical Team',
+                image: '/images/teams/technical/member3.jpg',
+            },
         ],
     },
     {
@@ -118,19 +141,26 @@ const TEAMS_DATA: TeamData[] = [
         description: 'Managing budgets and financial planning.',
         slug: 'finance',
         head: {
-            name: 'Amanda Low',
-            role: 'Finance Director',
+            name: 'Anushka Mahulkar',
+            role: 'Head Of Finance',
             image: '/images/teams/finance/head.jpg',
         },
         members: [
-            { name: 'Brad T.', role: 'Accountant', image: '/images/teams/finance/member1.jpg' },
             {
-                name: 'Kelly S.',
-                role: 'Budget Analyst',
+                name: 'Shreyasi Jumbe',
+                role: 'Finance Team',
+                image: '/images/teams/finance/member1.jpg',
+            },
+            {
+                name: 'Swejal Gujwar',
+                role: 'Finance Team',
                 image: '/images/teams/finance/member2.jpg',
             },
-            { name: 'Tim R.', role: 'Auditor', image: '/images/teams/finance/member3.jpg' },
-            { name: 'Laura M.', role: 'Treasurer', image: '/images/teams/finance/member4.jpg' },
+            {
+                name: 'Armata Alani',
+                role: 'Finance Team',
+                image: '/images/teams/finance/member3.jpg',
+            },
         ],
     },
     {
@@ -139,15 +169,36 @@ const TEAMS_DATA: TeamData[] = [
         description: 'Maintaining order and high standards.',
         slug: 'discipline',
         head: {
-            name: 'Marcus Bell',
+            name: 'Chaitanya Pawar',
             role: 'Head of Discipline',
             image: '/images/teams/discipline/head.jpg',
         },
         members: [
-            { name: 'Evan S.', role: 'Coordinator', image: '/images/teams/discipline/member1.jpg' },
-            { name: 'Tara W.', role: 'Supervisor', image: '/images/teams/discipline/member2.jpg' },
-            { name: 'Leo K.', role: 'Monitor', image: '/images/teams/discipline/member3.jpg' },
-            { name: 'Mia J.', role: 'Inspector', image: '/images/teams/discipline/member4.jpg' },
+            {
+                name: 'Devanshu Barai',
+                role: 'Discipline Team',
+                image: '/images/teams/discipline/member1.jpg',
+            },
+            {
+                name: 'Dhanesh Wahane',
+                role: 'Discipline Team',
+                image: '/images/teams/discipline/member2.jpg',
+            },
+            {
+                name: 'Subodh Bobhate',
+                role: 'Discipline Team',
+                image: '/images/teams/discipline/member3.jpg',
+            },
+            {
+                name: 'Rohit Chokatkar',
+                role: 'Discipline Team',
+                image: '/images/teams/discipline/member4.jpg',
+            },
+            {
+                name: 'Bhawarth Talkhande',
+                role: 'Discipline Team',
+                image: '/images/teams/discipline/member5.jpg',
+            },
         ],
     },
 ];
@@ -168,6 +219,33 @@ export default function TeamsPage() {
                 <p className="mx-auto max-w-2xl text-lg text-gray-600">
                     Meet the dedicated individuals driving our success across all departments.
                 </p>
+            </div>
+
+            {/* President Card */}
+            <div className="mb-16 flex justify-center">
+                <div className="group relative flex w-full max-w-md flex-col items-center overflow-hidden rounded-2xl border border-gray-100 bg-white p-8 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl md:flex-row md:p-6">
+                    {/* Background decoration */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-indigo-50 via-white to-blue-50 opacity-50"></div>
+
+                    {/* Image */}
+                    <div className="relative z-10 mb-4 h-32 w-32 shrink-0 overflow-hidden rounded-full border-4 border-white shadow-md md:mb-0 md:mr-6 md:h-28 md:w-28">
+                        <Image
+                            src={President.image}
+                            alt={President.name}
+                            fill
+                            className="object-cover"
+                        />
+                    </div>
+
+                    {/* Content */}
+                    <div className="relative z-10 text-center md:text-left">
+                        <h2 className="text-3xl font-bold text-gray-900">{President.name}</h2>
+                        <div className="mx-auto mb-2 h-1 w-12 rounded-full bg-indigo-500 md:mx-0"></div>
+                        <p className="text-sm font-semibold uppercase tracking-widest text-indigo-600">
+                            {President.role}
+                        </p>
+                    </div>
+                </div>
             </div>
 
             {/* Grid Layout */}
