@@ -366,50 +366,50 @@ export default function TeamsPage() {
                                 <Image
                                     src="https://res.cloudinary.com/dodrojsly/image/upload/v1771590658/media_fliz0a.png"
                                     alt="Media Team"
-                                    width={screen.width / 2}
-                                    height={screen.height / 2}
+                                    width={600}
+                                    height={600}
                                     className="object-contain transition-transform duration-300 group-hover:scale-110"
                                 />
                             ) : team.name.charAt(0).toUpperCase() === 'D' ? (
                                 team.id === 'documentation' ? (
                                     <Image
-                                        src="/images/teams/documentation.png"
+                                        src="https://res.cloudinary.com/dodrojsly/image/upload/v1771595535/Documentation_henqhx.png"
                                         alt="Documentation Team"
-                                        width={screen.width / 2}
-                                        height={screen.height / 2}
+                                        width={600}
+                                        height={600}
                                         className="object-contain transition-transform duration-300 group-hover:scale-110"
                                     />
                                 ) : (
                                     <Image
-                                        src="/images/teams/discipline.png"
+                                        src="https://res.cloudinary.com/dodrojsly/image/upload/v1771595585/discipline_r3aw1u.png"
                                         alt="Discipline Team"
-                                        width={screen.width / 2}
-                                        height={screen.height / 2}
+                                        width={600}
+                                        height={600}
                                         className="object-contain transition-transform duration-300 group-hover:scale-110"
                                     />
                                 )
                             ) : team.name.charAt(0).toUpperCase() === 'H' ? (
                                 <Image
-                                    src="/images/teams/hospitality.png"
+                                    src="https://res.cloudinary.com/dodrojsly/image/upload/v1771595500/Hospitality_q9pegt.png"
                                     alt="Hospitality Team"
-                                    width={screen.width / 2}
-                                    height={screen.height / 2}
+                                    width={600}
+                                    height={600}
                                     className="object-contain transition-transform duration-300 group-hover:scale-110"
                                 />
                             ) : team.name.charAt(0).toUpperCase() === 'T' ? (
                                 <Image
-                                    src="/images/teams/technical.png"
+                                    src="https://res.cloudinary.com/dodrojsly/image/upload/v1771595479/Technical_wbd25v.png"
                                     alt="Technical Team"
-                                    width={screen.width / 2}
-                                    height={screen.height / 2}
+                                    width={600}
+                                    height={600}
                                     className="object-contain transition-transform duration-300 group-hover:scale-110"
                                 />
                             ) : team.name.charAt(0).toUpperCase() === 'F' ? (
                                 <Image
-                                    src="/images/teams/finance.png"
+                                    src="https://res.cloudinary.com/dodrojsly/image/upload/v1771595563/finance_qd7a8y.png"
                                     alt="Finance Team"
-                                    width={screen.width / 2}
-                                    height={screen.height / 2}
+                                    width={600}
+                                    height={600}
                                     className="object-contain transition-transform duration-300 group-hover:scale-110"
                                 />
                             ) : (
