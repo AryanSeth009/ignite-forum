@@ -1,6 +1,7 @@
 'use client';
 
 import gsap from 'gsap';
+import { CldImage } from 'next-cloudinary';
 import Image from 'next/image';
 import { useState, useRef, useLayoutEffect } from 'react';
 
@@ -28,7 +29,7 @@ interface TeamData {
 const President: President = {
     name: 'Joe Francis',
     role: 'President',
-    image: '/images/teams/president/head.jpg',
+    image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573392/Joe_Francis_u8hyf0.png',
 };
 //Data of Members Ignite Club
 const TEAMS_DATA: TeamData[] = [
@@ -40,16 +41,24 @@ const TEAMS_DATA: TeamData[] = [
         head: {
             name: 'Anushka Moon',
             role: 'Media Head',
-            image: '/images/teams/media/head.jpg',
+            image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573391/Anushka_Moon_jcxyue.png',
         },
         members: [
             {
                 name: 'Rudra Dalal',
                 role: 'Media Co-Head',
-                image: '/images/teams/media/member1.jpg',
+                image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573392/Rudra_Dalal_qjse1u.png',
             },
-            { name: 'Om Tikle', role: 'Media Team', image: '/images/teams/media/member2.jpg' },
-            { name: 'Animesh Tajne', role: 'Media Team', image: '/images/teams/media/member3.jpg' },
+            {
+                name: 'Animesh Tajne',
+                role: 'Media Team',
+                image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573390/Animesh_Tajne_zrolp8.png',
+            },
+            {
+                name: 'Om Tikle',
+                role: 'Media Team',
+                image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573391/Om_Tikle_bmecm1.png',
+            },
         ],
     },
     {
@@ -60,18 +69,18 @@ const TEAMS_DATA: TeamData[] = [
         head: {
             name: 'Vedanti Adhe',
             role: 'Head of Documentation',
-            image: '/images/teams/documentation/head.jpg',
+            image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573387/Vedanti_Adhe_uh53ex.png',
         },
         members: [
             {
                 name: 'Himangi Pardhi',
                 role: 'Documentation Team',
-                image: '/images/teams/documentation/member1.jpg',
+                image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573387/Himangi_Pardhi_ngjkjt.png',
             },
             {
                 name: 'Neha Burele',
                 role: 'Documentation Team',
-                image: '/images/teams/documentation/member2.jpg',
+                image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573387/Nehe_Burele_pgznox.png',
             },
         ],
     },
@@ -83,28 +92,28 @@ const TEAMS_DATA: TeamData[] = [
         head: {
             name: 'Samruddhi Barbakar',
             role: 'Head of Hospitality',
-            image: '/images/teams/hospitality/head.jpg',
+            image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573390/Samruddhi_Barbatkar_yydki1.png',
         },
         members: [
             {
                 name: 'Sakshi Bende',
                 role: 'Hospitality Team',
-                image: '/images/teams/hospitality/member1.jpg',
+                image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573389/Sakshi_Bende_ufzyuk.png',
             },
             {
                 name: 'Anushka Chinchulkar',
                 role: 'Hospitality Team',
-                image: '/images/teams/hospitality/member2.jpg',
+                image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573388/Anushka_Chinchulkar_b1swpt.png',
             },
             {
                 name: 'Kankshi Patle',
                 role: 'Hospitality Team',
-                image: '/images/teams/hospitality/member3.jpg',
+                image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573389/Kankshi_Patle_t36iea.png',
             },
             {
                 name: 'Ojas Bramhane',
                 role: 'Hospitality Team',
-                image: '/images/teams/hospitality/member4.jpg',
+                image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573389/Ojas_Bramhane_sry9lf.png',
             },
         ],
     },
@@ -116,23 +125,23 @@ const TEAMS_DATA: TeamData[] = [
         head: {
             name: 'Aryan Seth',
             role: 'Technical Head',
-            image: '/images/teams/technical/head.jpg',
+            image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573392/Aryan_Seth_uogg3f.png',
         },
         members: [
             {
                 name: 'Rugved Kadu',
                 role: 'Technical Team',
-                image: '/images/teams/technical/member1.jpg',
+                image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573394/Rugved_Kadu_eanahl.png',
             },
             {
                 name: 'Rachit Guha',
                 role: 'Technical Team',
-                image: '/images/teams/technical/member2.jpg',
+                image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573393/Rachit_Guha_wj4i19.png',
             },
             {
                 name: 'Sudeep Kuralkar',
                 role: 'Technical Team',
-                image: '/images/teams/technical/member3.jpg',
+                image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573394/Sudeep_Kuralkar_jokpnq.png',
             },
         ],
     },
@@ -144,23 +153,23 @@ const TEAMS_DATA: TeamData[] = [
         head: {
             name: 'Anushka Mahulkar',
             role: 'Head Of Finance',
-            image: '/images/teams/finance/head.jpg',
+            image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573387/Anushka_Mahulkar_e5xiyl.png',
         },
         members: [
             {
                 name: 'Shreyasi Jumbe',
                 role: 'Finance Team',
-                image: '/images/teams/finance/member1.jpg',
+                image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573388/Shreyasi_Jubme_ek7h43.png',
             },
             {
                 name: 'Swejal Gujwar',
                 role: 'Finance Team',
-                image: '/images/teams/finance/member2.jpg',
+                image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573388/Swejal_Gujwar_i17xwu.png',
             },
             {
                 name: 'Armata Alani',
                 role: 'Finance Team',
-                image: '/images/teams/finance/member3.jpg',
+                image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573388/Amrata_Ailani_tnfc2o.png',
             },
         ],
     },
@@ -172,33 +181,33 @@ const TEAMS_DATA: TeamData[] = [
         head: {
             name: 'Chaitanya Pawar',
             role: 'Head of Discipline',
-            image: '/images/teams/discipline/head.jpg',
+            image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573387/chaitanya_Pawar_mu0rd8.png',
         },
         members: [
             {
                 name: 'Devanshu Barai',
                 role: 'Discipline Team',
-                image: '/images/teams/discipline/member1.jpg',
+                image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573386/Devanshu_Barai_hdyfn4.png',
             },
             {
                 name: 'Dhanesh Wahane',
                 role: 'Discipline Team',
-                image: '/images/teams/discipline/member2.jpg',
+                image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573387/Dhanesh_Wahane_ibisin.png',
             },
             {
                 name: 'Subodh Bobhate',
                 role: 'Discipline Team',
-                image: '/images/teams/discipline/member3.jpg',
+                image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573387/Subodh_Bobhate_fu0di4.png',
             },
             {
                 name: 'Rohit Chokatkar',
                 role: 'Discipline Team',
-                image: '/images/teams/discipline/member4.jpg',
+                image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573386/Rohit_Chokatkar_drryym.png',
             },
             {
                 name: 'Bhawarth Talkhande',
                 role: 'Discipline Team',
-                image: '/images/teams/discipline/member5.jpg',
+                image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573386/Bhawarth_Talkhande_zteoj8.png',
             },
         ],
     },

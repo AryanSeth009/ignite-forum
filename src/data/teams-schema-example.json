@@ -1,0 +1,32 @@
+{
+  "teams_collection_example": [
+    {
+      "id": "media",
+      "name": "Media",
+      "description": "Capturing moments and spreading the word.",
+      "slug": "media",
+      "head": {
+        "name": "Anushka Moon",
+        "role": "Media Head",
+        "image": "https://res.cloudinary.com/your-cloud-name/image/upload/v1234567890/ignite-forum/teams/media/head.jpg"
+      },
+      "members": [
+        {
+          "name": "Rudra Dalal",
+          "role": "Media Co-Head",
+          "image": "https://res.cloudinary.com/your-cloud-name/image/upload/v1234567890/ignite-forum/teams/media/member1.jpg"
+        },
+        {
+          "name": "Om Tikle",
+          "role": "Media Team",
+          "image": "https://res.cloudinary.com/your-cloud-name/image/upload/v1234567890/ignite-forum/teams/media/member2.jpg"
+        }
+      ]
+    }
+  ],
+  "leadership_collection_example": {
+    "role": "President",
+    "name": "Joe Francis",
+    "image": "https://res.cloudinary.com/your-cloud-name/image/upload/v1234567890/ignite-forum/teams/president.jpg"
+  }
+}

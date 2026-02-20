@@ -3,6 +3,55 @@ import './src/env.mjs';
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     swcMinify: true,
+
+    images: {
+        remotePatterns: [
+            // ✅ Cloudinary (ADD THIS)
+            {
+                protocol: 'https',
+                hostname: 'res.cloudinary.com',
+            },
+
+            // Existing Gravatar config
+            {
+                protocol: 'https',
+                hostname: 'www.gravatar.com',
+            },
+
+            // Existing Payload CMS media config
+            {
+                protocol: process.env.NEXT_PUBLIC_PAYLOAD_URI?.startsWith('https')
+                    ? 'https'
+                    : 'http',
+                hostname: process.env.NEXT_PUBLIC_PAYLOAD_URI
+                    ? new URL(process.env.NEXT_PUBLIC_PAYLOAD_URI).hostname
+                    : 'localhost',
+                port: process.env.NEXT_PUBLIC_PAYLOAD_URI
+                    ? new URL(process.env.NEXT_PUBLIC_PAYLOAD_URI).port || ''
+                    : '',
+                pathname: '/api/media/file/**',
+            },
+        ],
+    },
+
+    typescript: {
+        // Ignore TypeScript errors during production build
+        ignoreBuildErrors: process.env.PRODUCTION_BUILD === 'true',
+    },
+
+    eslint: {
+        // Ignore ESLint errors during production build
+        ignoreDuringBuilds: process.env.PRODUCTION_BUILD === 'true',
+    },
+};
+
+export default nextConfig;
+
+/* import './src/env.mjs';
+
+/** @type {import('next').NextConfig} */
+/* const nextConfig = {
+    swcMinify: true,
     images: {
         remotePatterns: [
             {
@@ -31,6 +80,6 @@ const nextConfig = {
         // Ignore ESLint errors during production build
         ignoreDuringBuilds: process.env.PRODUCTION_BUILD === 'true',
     },
-};
+}; */
 
-export default nextConfig;
+/* export default nextConfig; */
