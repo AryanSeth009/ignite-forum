@@ -141,7 +141,7 @@ const TEAMS_DATA: TeamData[] = [
             {
                 name: 'Sudeep Kuralkar',
                 role: 'Technical Team',
-                image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573394/Sudeep_Kuralkar_jokpnq.png',
+                image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771584683/Sudeep_Kuralkar_jokpnq.png',
             },
         ],
     },
