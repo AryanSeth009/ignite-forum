@@ -213,6 +213,26 @@ const TEAMS_DATA: TeamData[] = [
     },
 ];
 
+const SmoothImage = (props: any) => {
+    const [isLoaded, setIsLoaded] = useState(false);
+    return (
+        <Image
+            {...props}
+            className={`${props.className || ''} transition-all duration-500 ease-out ${
+                isLoaded ? 'opacity-100 blur-0' : 'opacity-0 blur-md'
+            }`}
+            onLoad={(e) => {
+                setIsLoaded(true);
+                if (props.onLoad) props.onLoad(e);
+            }}
+            onError={(e) => {
+                setIsLoaded(true);
+                if (props.onError) props.onError(e);
+            }}
+        />
+    );
+};
+
 export default function TeamsPage() {
     const [selectedTeam, setSelectedTeam] = useState<TeamData | null>(null);
     const [originRect, setOriginRect] = useState<DOMRect | null>(null);
@@ -269,16 +289,29 @@ export default function TeamsPage() {
     }, [selectedTeam, originRect]);
 
     // Close modal handle
-    const closeModal = () => setSelectedTeam(null);
+    const closeModal = () => {
+        if (modalRef.current && overlayRef.current) {
+            gsap.to(overlayRef.current, { opacity: 0, duration: 0.3, ease: 'power2.inOut' });
+            gsap.to(modalRef.current, {
+                opacity: 0,
+                scale: 0.9,
+                duration: 0.3,
+                ease: 'power2.inOut',
+                onComplete: () => setSelectedTeam(null),
+            });
+        } else {
+            setSelectedTeam(null);
+        }
+    };
 
     return (
-        <main className="min-h-screen bg-gray-50 px-4 py-16 font-sans text-gray-900 md:px-8">
+        <main className="text-white-100 min-h-screen px-4 py-16 font-sans md:px-8">
             {/* Header */}
             <div className="mb-12 text-center">
-                <h1 className="mb-4 text-5xl font-extrabold tracking-tight text-gray-900 drop-shadow-sm">
+                <h1 className="text-white-900 mb-4 text-5xl font-extrabold tracking-tight drop-shadow-sm">
                     Our Teams
                 </h1>
-                <p className="mx-auto max-w-2xl text-lg text-gray-600">
+                <p className="text-white-600 mx-auto max-w-2xl text-lg font-bold">
                     Meet the dedicated individuals driving our success across all departments.
                 </p>
             </div>
@@ -291,7 +324,7 @@ export default function TeamsPage() {
 
                     {/* Image */}
                     <div className="relative z-10 mb-4 h-32 w-32 shrink-0 overflow-hidden rounded-full border-4 border-white shadow-md md:mb-0 md:mr-6 md:h-28 md:w-28">
-                        <Image
+                        <SmoothImage
                             src={President.image}
                             alt={President.name}
                             fill
@@ -329,17 +362,69 @@ export default function TeamsPage() {
                             <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] bg-repeat opacity-10"></div>
 
                             {/* Team Initial or Icon Placeholder */}
-                            <span className="select-none text-6xl font-black text-indigo-300 drop-shadow-sm transition-transform duration-300 group-hover:scale-110">
-                                {team.name.charAt(0)}
-                            </span>
+                            {team.name.charAt(0).toUpperCase() === 'M' ? (
+                                <Image
+                                    src="https://res.cloudinary.com/dodrojsly/image/upload/v1771590658/media_fliz0a.png"
+                                    alt="Media Team"
+                                    width={screen.width / 2}
+                                    height={screen.height / 2}
+                                    className="object-contain transition-transform duration-300 group-hover:scale-110"
+                                />
+                            ) : team.name.charAt(0).toUpperCase() === 'D' ? (
+                                team.id === 'documentation' ? (
+                                    <Image
+                                        src="/images/teams/documentation.png"
+                                        alt="Documentation Team"
+                                        width={screen.width / 2}
+                                        height={screen.height / 2}
+                                        className="object-contain transition-transform duration-300 group-hover:scale-110"
+                                    />
+                                ) : (
+                                    <Image
+                                        src="/images/teams/discipline.png"
+                                        alt="Discipline Team"
+                                        width={screen.width / 2}
+                                        height={screen.height / 2}
+                                        className="object-contain transition-transform duration-300 group-hover:scale-110"
+                                    />
+                                )
+                            ) : team.name.charAt(0).toUpperCase() === 'H' ? (
+                                <Image
+                                    src="/images/teams/hospitality.png"
+                                    alt="Hospitality Team"
+                                    width={screen.width / 2}
+                                    height={screen.height / 2}
+                                    className="object-contain transition-transform duration-300 group-hover:scale-110"
+                                />
+                            ) : team.name.charAt(0).toUpperCase() === 'T' ? (
+                                <Image
+                                    src="/images/teams/technical.png"
+                                    alt="Technical Team"
+                                    width={screen.width / 2}
+                                    height={screen.height / 2}
+                                    className="object-contain transition-transform duration-300 group-hover:scale-110"
+                                />
+                            ) : team.name.charAt(0).toUpperCase() === 'F' ? (
+                                <Image
+                                    src="/images/teams/finance.png"
+                                    alt="Finance Team"
+                                    width={screen.width / 2}
+                                    height={screen.height / 2}
+                                    className="object-contain transition-transform duration-300 group-hover:scale-110"
+                                />
+                            ) : (
+                                <span className="select-none text-6xl font-black text-indigo-300 drop-shadow-sm transition-transform duration-300 group-hover:scale-110">
+                                    {team.name.charAt(0)}
+                                </span>
+                            )}
                         </div>
 
                         {/* Content */}
                         <div className="p-6">
-                            <h3 className="mb-2 text-2xl font-bold text-gray-800 transition-colors group-hover:text-indigo-600">
+                            <h3 className="mb-2 text-3xl font-bold text-gray-800 transition-colors group-hover:text-indigo-600">
                                 {team.name}
                             </h3>
-                            <p className="mb-4 line-clamp-2 text-sm text-gray-600">
+                            <p className="mb-4 line-clamp-2 text-sm font-bold text-gray-600">
                                 {team.description}
                             </p>
 
@@ -395,12 +480,12 @@ export default function TeamsPage() {
 
                             <div className="relative mb-6 h-40 w-40 overflow-hidden rounded-full border-4 border-white shadow-lg md:h-48 md:w-48">
                                 {/* Using next/image for optimized loading, failing gracefully to placeholder if not found */}
-                                <Image
+                                <SmoothImage
                                     src={selectedTeam.head.image}
                                     alt={selectedTeam.head.name}
                                     fill
                                     className="object-cover"
-                                    onError={(e) => {
+                                    onError={(e: any) => {
                                         // Fallback logic handled by cleaner structure if needed,
                                         // but for this assignment we assume images exist or just fail silently visually.
                                         // A real implementation might swap src on error.
@@ -432,7 +517,7 @@ export default function TeamsPage() {
                                         className="flex items-center gap-4 rounded-xl border border-gray-100 bg-gray-50 p-4 transition-all duration-300 hover:bg-white hover:shadow-md"
                                     >
                                         <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-full border-2 border-white shadow-sm">
-                                            <Image
+                                            <SmoothImage
                                                 src={member.image}
                                                 alt={member.name}
                                                 fill
