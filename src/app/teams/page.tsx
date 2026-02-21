@@ -305,13 +305,13 @@ export default function TeamsPage() {
     };
 
     return (
-        <main className="relative min-h-screen overflow-hidden bg-[#1b1918] pb-32 font-sans text-gray-100">
+        <main className="relative min-h-screen overflow-hidden pb-32 font-sans text-gray-100">
             {/* Technical Grid Pattern Background exactly matching events page */}
             <div
                 className="pointer-events-none absolute inset-0 opacity-20"
                 style={{
                     backgroundImage:
-                        'linear-gradient(#555 1px, transparent 1px), linear-gradient(to right, #555 1px, transparent 1px)',
+                        'linear-gradient(white 1px, transparent 1px), linear-gradient(to right, white 1px, transparent 1px)',
                     backgroundSize: '100px 100px',
                 }}
             ></div>
@@ -423,7 +423,7 @@ export default function TeamsPage() {
                                 </div>
 
                                 {/* Content Area */}
-                                <div className="flex flex-grow flex-col p-6 md:p-8">
+                                <div className="flex flex-grow flex-col bg-[#252020] p-6 md:p-8">
                                     <div className="mb-4 flex items-center">
                                         <h3 className="text-3xl font-bold tracking-wide text-white">
                                             {team.name}
@@ -460,7 +460,7 @@ export default function TeamsPage() {
                         <div className="pointer-events-none absolute inset-0 translate-x-3 translate-y-3 rounded-xl border-2 border-white"></div>
 
                         {/* Modal Container */}
-                        <div className="relative z-10 flex h-full max-h-[90vh] w-full flex-col overflow-hidden rounded-xl border-2 border-white bg-[#1a1918] shadow-2xl md:flex-row">
+                        <div className="relative z-10 flex h-full max-h-[90vh] w-full flex-col overflow-hidden rounded-xl border-2 border-white bg-[#252020] shadow-2xl md:flex-row">
                             {/* Close Button Component */}
                             <button
                                 onClick={closeModal}
