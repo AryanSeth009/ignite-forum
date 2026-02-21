@@ -5,25 +5,25 @@ import { LINKS } from '@/data/links';
 
 const LINK_BORDER_COLOURS = {
     Email: 'yellow',
-    GitHub: 'orange',
+    /* GitHub: 'orange', */
     Instagram: 'purple',
-    TikTok: 'yellow',
-    Facebook: 'orange',
-    Discord: 'purple',
+    /* TikTok: 'yellow', */
+    /* Facebook: 'orange', */
+    /*  Discord: 'purple', */
     LinkedIn: 'yellow',
-    YouTube: 'orange',
+    /* YouTube: 'orange', */
 } as const satisfies Record<(typeof LINKS)[number]['name'], Colour>;
 
 export default function Contact({ className }: { className?: string }) {
     return (
         <div className={`${className} space-y-6`}>
             <Paragraph>
-                Want to get in touch with us? Send us a message over on <b>Facebook</b>,{' '}
-                <b>Discord</b> or{' '}
+                Want to get in touch with us? Send us a message over on <b>Instagram</b>,{' '}
+                <b>LinkedIn</b> or{' '}
                 <b>
                     email us at{' '}
-                    <a href="mailto:contact@csclub.org.au" className="underline">
-                        contact@csclub.org.au
+                    <a href="mailto:ignite.csbs@gmail.com" className="underline">
+                        Ignite.csbs@gmail.com
                     </a>
                 </b>
                 .

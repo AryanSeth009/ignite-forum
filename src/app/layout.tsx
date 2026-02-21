@@ -8,11 +8,11 @@ import { Archivo } from 'next/font/google';
 export const metadata: Metadata = {
     icons: '/favicon.ico',
     title: {
-        template: '%s | Computer Science Club',
-        default: 'Computer Science Club',
+        template: '%s | CSBS Club',
+        default: 'CSBS Club',
     },
     description:
-        'The University of Adelaide Computer Science Club is a student-run club for those with an interest in computer science or computing in general.',
+        'This Website is showing the upcoming recent and all featuring activities in the IGNITE CLUB CSBS. ',
 };
 
 // TODO: Add canonical URLs
