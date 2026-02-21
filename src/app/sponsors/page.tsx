@@ -22,10 +22,9 @@ export default async function SponsorsPage() {
                 <Duck colour="yellow" size={80} className="hidden md:block" />
             </div>
             <div className="max-w-3xl border-x-4 border-white p-2 text-center text-lg md:p-5 md:text-2xl">
-                The <b>Adelaide University Computer Science Club</b> is proudly supported by our{' '}
-                <b>generous sponsors</b>. Their unwavering support make events and workshops
-                possible, fostering an environment for aspiring tech enthusiasts to excel within our
-                community.
+                The <b>Ignite Forum</b> is proudly supported by our <b>generous sponsors</b>. Their
+                unwavering support make events and workshops possible, fostering an environment for
+                aspiring tech enthusiasts to excel within our community.
             </div>
             <Sponsors sponsors={sponsors} />
             <Paragraph>

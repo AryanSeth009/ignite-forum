@@ -34,7 +34,7 @@ export default function HeaderLinks({
                 ) : (
                     <Link
                         href={link.href ?? '#'}
-                        className="py-2 hover:underline"
+                        className="py-1 hover:underline"
                         onClick={onClick}
                         key={i}
                     >

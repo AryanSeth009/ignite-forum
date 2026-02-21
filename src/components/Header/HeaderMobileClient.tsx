@@ -2,17 +2,9 @@
 
 import LINKS from '@/constants/links';
 import type { LinkType } from '@/constants/links';
-import { logout } from '@/lib/actions';
 import Link from 'next/link';
 import { useState } from 'react';
-import {
-    FaUserPlus,
-    FaCreditCard,
-    FaSignOutAlt,
-    FaSignInAlt,
-    FaUserCheck,
-    FaTimes,
-} from 'react-icons/fa';
+import { FaUserPlus, FaCreditCard, FaSignInAlt, FaUserCheck, FaTimes } from 'react-icons/fa';
 import { IoMdMenu } from 'react-icons/io';
 import { IoChevronForward } from 'react-icons/io5';
 import type { HeaderData } from '.';
@@ -38,24 +30,19 @@ export default function HeaderMobileClient({
     const closeMenu = () => {
         setIsMenuOpen(false);
     };
-    const handleSignOut = async () => {
-        await logout();
-        setIsMenuOpen(false);
-    };
     const userExists = data.nextStep !== 'signup';
     const isMember = data.nextStep === null;
     // Runtime checks for conditional links
     const isSignedIn = data.isSignedIn;
     const isAdmin = data.isAdmin;
     const conditionalLinks: MenuLinkType[] = [
-        ...(isSignedIn ? [{ title: 'Settings', href: '/settings' }] : []),
         ...(isAdmin ? [{ title: 'Admin Panel', href: '/admin' }] : []),
     ];
     const memberLinks = [
         ...(isMember
             ? [
                   {
-                      title: 'CS Club Drive',
+                      title: 'Ignite Forum Drive',
                       href: process.env.NEXT_PUBLIC_DRIVE_LINK ?? '',
                       target: '_blank',
                       rel: 'noopener noreferrer',
@@ -77,13 +64,13 @@ export default function HeaderMobileClient({
     return (
         <div className={`${className} fixed z-[9999] w-full`}>
             <ScrollShader className={isMenuOpen ? 'hidden' : ''} />
-            <div className="mx-auto mt-8 w-responsive">
-                <div className="flex">
+            <div className="mx-auto mt-2 w-responsive">
+                <div className="flex items-center">
                     <LogoTitle titleColor="text-white" className="grow" onClick={closeMenu} />
                     <FancyRectangle colour="black" offset="4" filled>
                         <button
                             onClick={toggleMenu}
-                            className="relative flex h-16 w-16 items-center justify-center border-4 border-black bg-white text-4xl text-black transition-all duration-300"
+                            className="relative flex h-8 w-8 items-center justify-center border-4 border-black bg-white text-xl text-black transition-all duration-300"
                         >
                             <IoMdMenu aria-label="Menu" />
                             {data.isSignedIn && data.nextStep !== null && !isMenuOpen && (
@@ -152,91 +139,8 @@ export default function HeaderMobileClient({
                             </>
                         )}
 
-                        {/* Auth and action icons horizontal row */}
-                        <div className="flex w-full items-center justify-between gap-4 px-4 py-2">
-                            {!data.isSignedIn && (
-                                <>
-                                    <div className="flex w-full flex-col items-center md:flex-row md:items-end">
-                                        <Button
-                                            colour="orange"
-                                            size="small"
-                                            className={`${actionPadding} py-2`}
-                                            onClick={() => {
-                                                import('next-auth/react').then((mod) => {
-                                                    mod.signIn('keycloak');
-                                                    closeMenu();
-                                                });
-                                            }}
-                                        >
-                                            <FaSignInAlt className="text-2xl" />
-                                        </Button>
-                                        <span className="mt-1 font-bold text-black md:ml-4 md:mt-0 md:py-1">
-                                            Sign In
-                                        </span>
-                                    </div>
-                                    <div className="flex w-full flex-col items-center md:flex-row md:items-end">
-                                        <Button
-                                            colour="orange"
-                                            size="small"
-                                            className={`${actionPadding} py-2`}
-                                            href="/join"
-                                            onClick={closeMenu}
-                                        >
-                                            <FaUserCheck className="text-2xl" />
-                                        </Button>
-                                        <span className="mt-1 font-bold text-black md:ml-4 md:mt-0 md:py-1">
-                                            Join Us
-                                        </span>
-                                    </div>
-                                </>
-                            )}
-                            {data.isSignedIn && data.nextStep === 'signup' && (
-                                <div className="flex w-full flex-col items-center md:flex-row md:items-end">
-                                    <Button
-                                        colour="orange"
-                                        size="small"
-                                        className={`${actionPadding} py-2`}
-                                        href="/join"
-                                        onClick={closeMenu}
-                                    >
-                                        <FaUserPlus className="text-2xl" />
-                                    </Button>
-                                    <span className="mt-1 font-bold text-black md:ml-4 md:mt-0 md:py-1">
-                                        Continue
-                                    </span>
-                                </div>
-                            )}
-                            {data.isSignedIn && data.nextStep === 'payment' && (
-                                <div className="flex w-full flex-col items-center md:flex-row md:items-end">
-                                    <Button
-                                        colour="orange"
-                                        size="small"
-                                        className={`${actionPadding} py-2`}
-                                        href="/settings"
-                                        onClick={closeMenu}
-                                    >
-                                        <FaCreditCard className="text-2xl" />
-                                    </Button>
-                                    <span className="mt-1 font-bold text-black md:ml-4 md:mt-0 md:py-1">
-                                        Payment
-                                    </span>
-                                </div>
-                            )}
-                            {data.isSignedIn && (
-                                <div className="flex w-full flex-col items-center md:flex-row md:items-end">
-                                    <Button
-                                        colour="orange"
-                                        size="small"
-                                        className={`${actionPadding} py-2`}
-                                        onClick={handleSignOut}
-                                    >
-                                        <FaSignOutAlt className="text-2xl" />
-                                    </Button>
-                                    <span className="mt-1 font-bold text-black md:ml-4 md:mt-0 md:py-1">
-                                        Sign Out
-                                    </span>
-                                </div>
-                            )}
+                        {/* Action row closed */}
+                        <div className="flex w-full items-center justify-end px-4 py-2">
                             <div className="flex w-full flex-col items-center md:flex-row md:items-end">
                                 <Button
                                     colour="purple"
