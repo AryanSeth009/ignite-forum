@@ -316,188 +316,132 @@ export default function TeamsPage() {
                 }}
             ></div>
 
-            <div className="relative z-10 mx-auto mt-16 max-w-7xl px-4 sm:px-8 md:mt-24">
-                <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-16">
-                    {/* Left Column: Title, Intro text, Image Card */}
-                    <div className="flex flex-col items-start pr-0 md:pr-4 lg:col-span-5">
-                        {/* Title mimicking "Events" purple box */}
-                        <div className="relative mb-10 inline-block w-full sm:w-auto">
-                            {/* Dark offset outline behind */}
-                            <div className="pointer-events-none absolute inset-0 translate-x-3 translate-y-3 border-2 border-[#111] bg-[#000000]"></div>
-                            {/* Solid colored box with title */}
-                            <div className="relative z-10 w-full border-2 border-black border-b-[#8b5cf6] border-r-[#8b5cf6] bg-[#8b5cf6] px-8 py-3 text-center sm:text-left">
-                                <h1 className="text-5xl font-black text-black md:text-6xl">
-                                    Teams
-                                </h1>
-                            </div>
+            <div className="relative z-10 mx-auto mt-16 flex max-w-7xl flex-col items-center px-4 sm:px-8 md:mt-24">
+                {/* Header */}
+                <div className="relative mb-6 inline-block text-center">
+                    <div className="pointer-events-none absolute inset-0 translate-x-3 translate-y-3 border-2 border-[#111] bg-[#000000]"></div>
+                    <div className="relative z-10 border-2 border-black border-b-[#8b5cf6] border-r-[#8b5cf6] bg-[#8b5cf6] px-8 py-3">
+                        <h1 className="text-4xl font-black uppercase tracking-wide text-black md:text-5xl">
+                            Our Teams
+                        </h1>
+                    </div>
+                </div>
+                <p className="mb-16 max-w-2xl text-center text-base font-medium leading-relaxed text-white md:text-lg">
+                    Meet the dedicated individuals driving our success across all departments.
+                </p>
+
+                {/* President Card */}
+                <div className="group relative mx-auto mb-20 w-full max-w-md">
+                    <div className="pointer-events-none absolute inset-0 translate-x-3 translate-y-3 rounded-xl border-[2px] border-white transition-all duration-300 group-hover:translate-x-4 group-hover:translate-y-4"></div>
+                    <div className="relative z-10 flex cursor-pointer items-center rounded-xl border-[2px] border-white bg-[#22201f] p-6">
+                        <div className="relative mr-6 h-28 w-28 shrink-0 overflow-hidden rounded-full border-2 border-gray-400 bg-black">
+                            <SmoothImage
+                                src={President.image}
+                                alt={President.name}
+                                fill
+                                className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                            />
                         </div>
-
-                        {/* Intro Paragraphs */}
-                        <p className="mb-6 text-base leading-relaxed text-white md:text-lg">
-                            The Ignite Forum is excited to introduce the dedicated individuals
-                            driving our success across all departments.
-                        </p>
-                        <p className="mb-12 text-base leading-relaxed text-white md:text-lg">
-                            For further information, take a look at some of the teams below!
-                        </p>
-
-                        {/* President Card mimicking the left image style */}
-                        <div className="relative mx-auto mb-10 w-full max-w-sm shadow-lg lg:mx-0 lg:mb-0 xl:max-w-md">
-                            {/* White offset background */}
-                            <div className="pointer-events-none absolute inset-0 translate-x-3 translate-y-3 rounded-xl border-2 border-transparent bg-white"></div>
-                            {/* Image Container with white border */}
-                            <div className="group relative z-10 flex cursor-pointer flex-col overflow-hidden rounded-xl border-[3px] border-white bg-[#111] p-1.5">
-                                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg border border-gray-600 bg-gray-900">
-                                    <SmoothImage
-                                        src={President.image}
-                                        alt={President.name}
-                                        fill
-                                        className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                                    />
-                                </div>
-                                <div className="px-2 pb-1 pt-3 text-center text-white">
-                                    <h2 className="text-2xl font-bold tracking-wide">
-                                        {President.name}
-                                    </h2>
-                                    <p className="mt-1 text-sm font-bold uppercase tracking-widest text-[#eab308]">
-                                        {President.role}
-                                    </p>
-                                </div>
-                            </div>
+                        <div>
+                            <h2 className="mb-2 text-2xl font-bold text-white md:text-3xl">
+                                {President.name}
+                            </h2>
+                            <span className="inline-block border border-black bg-[#eab308] px-3 py-1 text-xs font-extrabold uppercase tracking-widest text-black">
+                                {President.role}
+                            </span>
                         </div>
                     </div>
+                </div>
 
-                    {/* Right Column: List of teams mimicking the "Friday Night Games" section */}
-                    <div className="mt-8 flex flex-col gap-12 lg:col-span-7 lg:mt-0 lg:gap-16">
-                        {TEAMS_DATA.map((team, idx) => (
-                            <div
-                                key={team.id}
-                                onClick={(e) => {
-                                    const rect = e.currentTarget.getBoundingClientRect();
-                                    setOriginRect(rect);
-                                    setSelectedTeam(team);
-                                }}
-                                className="group relative w-full cursor-pointer outline-none"
-                            >
-                                {/* Offset Border Frame */}
-                                <div className="pointer-events-none absolute inset-0 translate-x-3 translate-y-3 rounded-2xl border-[2px] border-white transition-all duration-300 group-hover:translate-x-4 group-hover:translate-y-4 group-hover:border-[#eab308]"></div>
+                {/* Grid Layout */}
+                <div className="grid w-full grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-10">
+                    {TEAMS_DATA.map((team) => (
+                        <div
+                            key={team.id}
+                            onClick={(e) => {
+                                const rect = e.currentTarget.getBoundingClientRect();
+                                setOriginRect(rect);
+                                setSelectedTeam(team);
+                            }}
+                            className="group relative flex h-full w-full cursor-pointer flex-col outline-none"
+                        >
+                            <div className="pointer-events-none absolute inset-0 translate-x-2.5 translate-y-2.5 rounded-2xl border-[2px] border-white transition-all duration-300 group-hover:translate-x-4 group-hover:translate-y-4 group-hover:border-[#eab308]"></div>
 
-                                <div className="relative z-10 w-full rounded-2xl border-[2px] border-white bg-[#22201f] p-6 transition-colors sm:p-8">
-                                    {/* Card Header ("Orange | White") */}
-                                    <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center">
-                                        <div className="self-start bg-[#ea580c] px-4 py-1.5 sm:self-auto">
-                                            <span className="text-2xl font-extrabold tracking-tight text-black">
-                                                {team.name}
-                                            </span>
-                                        </div>
-                                        <h3 className="text-3xl font-bold uppercase tracking-widest text-white">
-                                            Team
+                            <div className="relative z-10 flex h-full flex-col overflow-hidden rounded-2xl border-[2px] border-white bg-[#22201f]">
+                                {/* Image Area */}
+                                <div className="relative flex h-48 w-full items-center justify-center overflow-hidden border-b-[2px] border-white bg-[#f8f9fa] p-4 sm:h-56">
+                                    {/* Team Image Logic */}
+                                    {team.name.charAt(0).toUpperCase() === 'M' ? (
+                                        <Image
+                                            src="https://res.cloudinary.com/dodrojsly/image/upload/v1771590658/media_fliz0a.png"
+                                            alt="Media Team"
+                                            fill
+                                            className="object-contain p-4 transition-transform duration-500 group-hover:scale-105"
+                                        />
+                                    ) : team.name.charAt(0).toUpperCase() === 'D' ? (
+                                        team.id === 'documentation' ? (
+                                            <Image
+                                                src="https://res.cloudinary.com/dodrojsly/image/upload/v1771595535/Documentation_henqhx.png"
+                                                alt="Documentation Team"
+                                                fill
+                                                className="object-contain p-4 transition-transform duration-500 group-hover:scale-105"
+                                            />
+                                        ) : (
+                                            <Image
+                                                src="https://res.cloudinary.com/dodrojsly/image/upload/v1771595585/discipline_r3aw1u.png"
+                                                alt="Discipline Team"
+                                                fill
+                                                className="object-contain p-4 transition-transform duration-500 group-hover:scale-105"
+                                            />
+                                        )
+                                    ) : team.name.charAt(0).toUpperCase() === 'H' ? (
+                                        <Image
+                                            src="https://res.cloudinary.com/dodrojsly/image/upload/v1771595500/Hospitality_q9pegt.png"
+                                            alt="Hospitality Team"
+                                            fill
+                                            className="object-contain p-4 transition-transform duration-500 group-hover:scale-105"
+                                        />
+                                    ) : team.name.charAt(0).toUpperCase() === 'T' ? (
+                                        <Image
+                                            src="https://res.cloudinary.com/dodrojsly/image/upload/v1771595479/Technical_wbd25v.png"
+                                            alt="Technical Team"
+                                            fill
+                                            className="object-contain p-4 transition-transform duration-500 group-hover:scale-105"
+                                        />
+                                    ) : team.name.charAt(0).toUpperCase() === 'F' ? (
+                                        <Image
+                                            src="https://res.cloudinary.com/dodrojsly/image/upload/v1771595563/finance_qd7a8y.png"
+                                            alt="Finance Team"
+                                            fill
+                                            className="object-contain p-4 transition-transform duration-500 group-hover:scale-105"
+                                        />
+                                    ) : (
+                                        <span className="text-6xl font-black text-gray-700">
+                                            {team.name.charAt(0)}
+                                        </span>
+                                    )}
+                                </div>
+
+                                {/* Content Area */}
+                                <div className="flex flex-grow flex-col p-6 md:p-8">
+                                    <div className="mb-4 flex items-center">
+                                        <h3 className="text-3xl font-bold tracking-wide text-white">
+                                            {team.name}
                                         </h3>
-
-                                        {/* Abstract icon replacement for duck silhouettes */}
-                                        <div className="ml-auto hidden flex-col items-end opacity-[0.8] sm:flex">
-                                            <svg
-                                                width="32"
-                                                height="32"
-                                                viewBox="0 0 24 24"
-                                                fill="none"
-                                                stroke="#eab308"
-                                                strokeWidth="2"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                            >
-                                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                                <circle cx="9" cy="7" r="4"></circle>
-                                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                                            </svg>
-                                        </div>
                                     </div>
-
-                                    {/* Properties List */}
-                                    <div className="border-t-2 border-gray-400">
-                                        {/* Head Row */}
-                                        <div className="flex items-center justify-between border-b-2 border-gray-400 py-4">
-                                            <div className="relative flex w-full items-center">
-                                                <span className="mr-3 text-xl font-bold leading-none text-[#ea580c] sm:mr-4">
-                                                    ▶
-                                                </span>
-                                                <span className="w-24 shrink-0 text-base font-bold text-white sm:text-lg">
-                                                    Head:
-                                                </span>
-                                                <span className="ml-2 text-base font-medium text-gray-300 sm:text-lg">
-                                                    {team.head.name}
-                                                </span>
-                                                <span className="ml-auto hidden rounded border-2 border-white px-2 py-0.5 text-xs text-white opacity-80 sm:block">
-                                                    LEAD
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                        {/* Members Row */}
-                                        <div className="flex items-center justify-between border-b-2 border-gray-400 py-4">
-                                            <div className="flex w-full items-center">
-                                                <span className="mr-3 text-xl font-bold leading-none text-[#8b5cf6] sm:mr-4">
-                                                    ▶
-                                                </span>
-                                                <span className="w-24 shrink-0 text-base font-bold text-white sm:text-lg">
-                                                    Members:
-                                                </span>
-                                                <span className="ml-2 text-base font-medium text-gray-300 sm:text-lg">
-                                                    {team.members.length} Active
-                                                </span>
-                                                <span className="ml-auto hidden rounded border-2 border-white px-2 py-0.5 text-xs text-white opacity-80 sm:block">
-                                                    COUNT
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                        {/* Description Row */}
-                                        <div className="flex items-start justify-between border-b-2 border-gray-400 py-4">
-                                            <div className="flex w-full items-start">
-                                                <span className="mr-3 mt-1 text-xl font-bold leading-none text-[#ea580c] sm:mr-4">
-                                                    ▶
-                                                </span>
-                                                <span className="mt-0.5 w-24 shrink-0 text-base font-bold text-white sm:text-lg">
-                                                    Focus:
-                                                </span>
-                                                <span className="ml-2 mt-0.5 line-clamp-2 text-base font-medium text-gray-300 sm:text-lg">
-                                                    {team.description}
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {/* Description Box matching dark grey popup box in Events card */}
-                                    <div className="relative mt-8 rounded border-2 border-white bg-[#1f1e1d] p-5 text-left shadow-none transition-colors">
-                                        <div className="mb-4 space-y-2 border-l-[3px] border-gray-500 pl-4">
-                                            <p className="text-sm font-medium text-gray-300 sm:text-base">
-                                                Want to know more about the{' '}
-                                                <span className="font-bold text-white">
-                                                    {team.name}
-                                                </span>{' '}
-                                                department?
-                                            </p>
-                                            <p className="text-sm font-medium text-gray-300 sm:text-base">
-                                                Curious about the faces behind our operations?
-                                            </p>
-                                        </div>
-                                        <p className="mb-2 text-sm text-gray-200 sm:text-base">
-                                            Click this card below to view the{' '}
-                                            <strong className="text-[#eab308]">
-                                                {team.name} Team
-                                            </strong>{' '}
-                                            details and members!
-                                        </p>
-                                        <p className="text-sm font-extrabold uppercase tracking-wide text-white">
-                                            NOTE: Active memberships are open to innovators within
-                                            the department.
-                                        </p>
+                                    <p className="mb-8 line-clamp-2 text-sm font-medium leading-relaxed text-gray-300 md:text-base">
+                                        {team.description}
+                                    </p>
+                                    <div className="mt-auto flex items-center text-sm font-bold uppercase tracking-wide text-[#8b5cf6] transition-colors group-hover:text-[#eab308]">
+                                        Click to view team{' '}
+                                        <span className="ml-2 transform font-bold transition-transform duration-300 group-hover:translate-x-1">
+                                            →
+                                        </span>
                                     </div>
                                 </div>
                             </div>
-                        ))}
-                    </div>
+                        </div>
+                    ))}
                 </div>
             </div>
 
