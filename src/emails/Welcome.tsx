@@ -97,7 +97,7 @@ export default function Email({ firstName }: EmailProps) {
                     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                     <meta name="color-scheme" content="light dark" />
                     <meta name="supported-color-schemes" content="light dark" />
-                    <title>CS Club</title>
+                    <title>Ignite Forum</title>
                 </Head>
                 <Body className="m-0 mt-8 bg-white p-0 font-sans text-black dark:bg-grey">
                     <Container className="bg-white dark:bg-grey">

@@ -70,19 +70,13 @@ export default function MenuLinks({
                     className={linkClass}
                     onClick={onClick}
                 >
-                    <span>CS Club Drive</span>
+                    <span>Ignite Forum Drive</span>
                     {arrow}
                 </Link>
             )}
             {isMember && (
                 <Link href="/gallery" className={linkClass} onClick={onClick}>
                     <span>Photo Gallery</span>
-                    {arrow}
-                </Link>
-            )}
-            {data.isSignedIn && (
-                <Link href="/settings" className={linkClass} onClick={onClick}>
-                    <span>Settings</span>
                     {arrow}
                 </Link>
             )}

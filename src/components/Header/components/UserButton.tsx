@@ -1,6 +1,5 @@
 import Button from '@/components/Button';
 import FancyRectangle from '@/components/FancyRectangle';
-import { logout } from '@/lib/actions';
 import { Transition } from '@headlessui/react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -22,24 +21,28 @@ export default function UserButton({ data }: { data: HeaderData }) {
     };
 
     const router = useRouter();
-    const handleSignOut = async () => {
-        await logout();
-        router.push('/');
-        router.refresh();
-    };
 
     const isSignedIn = data.isSignedIn;
     const isAdmin = data.isAdmin;
     const memberLinks: MenuLinkType[] = [
-        ...(isSignedIn ? [{ title: 'Settings', href: '/settings' }] : []),
         ...(isAdmin ? [{ title: 'Admin Panel', href: '/admin' }] : []),
     ];
     const userExists = data.nextStep !== 'signup';
     return (
         <FancyRectangle colour="black" offset="4" filled>
-            <div className="relative flex w-11 gap-y-2 border-2 border-black" ref={ref}>
+            <div className="relative flex w-16 gap-y-2 border-2 border-black" ref={ref}>
                 <button onClick={handleButtonClick}>
-                    <Image src={data.avatar!} alt="Profile" width={100} height={100} />
+                    <Image
+                        src={
+                            data.avatar && data.avatar !== ''
+                                ? data.avatar
+                                : '/images/logos/logo.png'
+                        }
+                        alt="Profile"
+                        width={100}
+                        height={100}
+                        className="rounded-full object-cover"
+                    />
                 </button>
                 <Transition
                     show={isMenuOpen}
@@ -54,9 +57,6 @@ export default function UserButton({ data }: { data: HeaderData }) {
                         {userExists && (
                             <MenuLinks data={data} onClick={closeMenu} links={memberLinks} />
                         )}
-                        <Button onClick={handleSignOut} colour="orange" width="w-40 md:w-32">
-                            Sign Out
-                        </Button>
                     </div>
                 </Transition>
             </div>

@@ -1,4 +1,3 @@
-import Duck from '@/components/Duck';
 import FancyRectangle from '@/components/FancyRectangle';
 import Paragraph from '@/components/Paragraph';
 import Title from '@/components/Title';
@@ -68,10 +67,21 @@ export default async function AboutPage() {
                                 height={30}
                             />
                             <p className="my-4 text-lg md:text-xl">
-                                The Adelaide University Computer Science Club is a student-run club
-                                for those with an interest in computer science or computing in
-                                general. Although we&apos;re a university club, we welcome anyone
-                                interested in computer science and/or socialising to join!
+                                <span className="font-bold text-orange">
+                                    IGNITE FORUM: Where Technology Meets Business
+                                </span>
+                                <br />
+                                <br />
+                                The Ignite Forum is the premier student body of the Department of
+                                Computer Science and Business Systems (CSBS) at St. Vincent Pallotti
+                                College of Engineering and Technology, Nagpur.
+                                <br />
+                                <br />
+                                Founded to foster a spirit of innovation and professional
+                                excellence, Ignite serves as a launchpad for students to transition
+                                from academic learners to industry leaders. We pride ourselves on a
+                                culture that balances rigorous technical development with unmatched
+                                creative and athletic dominance.
                             </p>
                         </div>
                     </div>
@@ -90,44 +100,54 @@ export default async function AboutPage() {
                         </div>
                         <FancyRectangle colour={'purple'} offset={'8'} filled rounded>
                             <Paragraph>
-                                <ul className="ml-6 list-disc">
+                                <ul className="ml-6 list-disc space-y-2">
                                     <li>
-                                        The{' '}
-                                        <span className="font-bold text-yellow">Duck Lounge</span>{' '}
-                                        (located at Engineering and Maths EM110)
+                                        <span className="font-bold text-yellow">
+                                            The Champion’s Edge:
+                                        </span>{' '}
+                                        Be part of the only department to secure a &quot;Double
+                                        Victory&quot;—winning Overall Championship Trophies in both
+                                        Sports and Culture at Insight 2026.
                                     </li>
                                     <li>
-                                        Frequent computer science talks on a diverse range of topics
-                                    </li>
-                                    <li>
-                                        Educational{' '}
-                                        <span className="font-bold text-purple">workshops</span>
-                                    </li>
-                                    <li>
-                                        <span className="font-bold text-yellow">Social nights</span>
-                                    </li>
-                                    <li>
-                                        A wide{' '}
-                                        <span className="font-bold text-orange">network</span> of
-                                        other computer science students and graduates
-                                    </li>
-                                    <li>
-                                        And of course,{' '}
-                                        <span className="font-bold text-orange">
-                                            {' '}
-                                            cooperative food
-                                        </span>
-                                        ,{' '}
                                         <span className="font-bold text-purple">
-                                            drink ventures
-                                        </span>
-                                        , and <span className="font-bold text-yellow">BBQs</span>{' '}
-                                        throughout the year
+                                            Industry 5.0 Focus:
+                                        </span>{' '}
+                                        Participate in specialized workshops like &quot;Mind to
+                                        Market&quot; and expert sessions on AI, Data Science, and
+                                        AWS Cloud Automation.
                                     </li>
                                     <li>
-                                        And let&apos;s not forget, a{' '}
-                                        <span className="font-bold text-yellow">pub crawl</span>{' '}
-                                        each year to celebrate our studies
+                                        <span className="font-bold text-orange">
+                                            Real-World Exposure:
+                                        </span>{' '}
+                                        Beyond the classroom, we conduct mandatory Industrial Visits
+                                        (e.g., Lokmat Press, Dinshaw’s Dairy) to study automated
+                                        production and ERP systems in action.
+                                    </li>
+                                    <li>
+                                        <span className="font-bold text-yellow">
+                                            Hackathon Culture:
+                                        </span>{' '}
+                                        Join our elite coding teams who have secured National Wins
+                                        (Techelons 2026) and top ranks at Abhyudaya (IIIT Nagpur)
+                                        and HackNagpur 2.0.
+                                    </li>
+                                    <li>
+                                        <span className="font-bold text-purple">
+                                            Global Pathways:
+                                        </span>{' '}
+                                        Access seminars on International Higher Studies and career
+                                        roadmaps with industry veterans from TCS, Wipro, and
+                                        Persistent Systems.
+                                    </li>
+                                    <li>
+                                        <span className="font-bold text-orange">
+                                            Holistic Growth:
+                                        </span>{' '}
+                                        From volunteering for the Vidyarthi Vigyan Manthan (VVM) to
+                                        youth empowerment through Jeevan Vidya, we build responsible
+                                        citizens.
                                     </li>
                                 </ul>
                             </Paragraph>
@@ -155,11 +175,13 @@ export default async function AboutPage() {
                             height={30}
                         />
                         <p className="my-4 text-lg lg:text-xl">
-                            The club runs various competitions throughout the year, offering members
-                            a chance to have fun and win prizes. These have included programming and
-                            video game competitions. The club also coordinates projects among club
-                            members, allowing members to gain valuable experience working on team
-                            projects — while also having fun.
+                            Our elite coding teams have secured National Wins, including the{' '}
+                            <span className="font-bold text-yellow">
+                                1st Prize (₹20,000) at TECHELONS 2026
+                            </span>{' '}
+                            for &apos;SkyCoPilot&apos; (Applied AI for Industry 5.0). We also hold
+                            top ranks at Abhyudaya (IIIT Nagpur) and HackNagpur 2.0, coordinating
+                            team projects that translate technical prowess into real-world impact.
                         </p>
                     </div>
                     <div className="mr-2 flex justify-center lg:justify-end">
@@ -208,10 +230,13 @@ export default async function AboutPage() {
                     />
                     <div className="relative rounded-xl border-2 border-white bg-grey px-4 py-4 md:px-6 md:py-6">
                         <p className="text-lg md:text-xl">
-                            Founded in 2008 with a large and active group of members, we are always
-                            willing to offer academic assistance or make new friends. All are
-                            welcome to join us for an exciting year in a fun, open and unique
-                            environment.
+                            Under the guidance of our HOD{' '}
+                            <span className="font-bold text-orange">Dr. Praveen Sen</span> and the
+                            current leadership of President{' '}
+                            <span className="font-bold text-orange">Mr. Joe Francis</span>, Ignite
+                            Forum continues to set new benchmarks for departmental excellence.
+                            Active memberships are open to all innovators within the CSBS
+                            department.
                         </p>
                     </div>
                     <Image
@@ -256,11 +281,7 @@ export default async function AboutPage() {
                         ))}
                     </div>
                     <div className="relative mb-2 mt-8 flex flex-row justify-end space-x-4 *:h-12 md:*:h-16">
-                        <Duck colour="white" outline />
-                        <Duck colour="white" outline />
-                        <Duck colour="white" />
-                        <Duck colour="white" />
-                        <Duck colour="white" />
+                        {/* Ducks removed */}
                     </div>
                 </section>
                 <section className="mt-8 md:mt-0">
@@ -283,23 +304,11 @@ export default async function AboutPage() {
                             />
 
                             <FAQ
-                                question={'How do I become a club member?'}
+                                question={'Where is the forum located?'}
                                 answer={
                                     <p>
-                                        You can register as a club member on our website{' '}
-                                        <a href="/join" className="underline">
-                                            here
-                                        </a>
-                                        . Create an account by filling in your information, then
-                                        complete the payment to finalise your membership.
-                                        <br />
-                                        <br />
-                                        <span className="font-bold">Note:</span> As AUSA is now
-                                        managing club memberships, we are currently waiting for
-                                        their new sign-up system to be finalised. You will be
-                                        required to register through their platform at a later date,
-                                        we want to assure you that all existing membership payments
-                                        for this year will be transferred over.
+                                        We are based in the CSBS Departmental wing at SVPCET,
+                                        Nagpur.
                                     </p>
                                 }
                                 colour={'orange'}
@@ -307,90 +316,25 @@ export default async function AboutPage() {
                             <FAQ
                                 question={'What are the perks of being a member?'}
                                 answer={
-                                    <div>
-                                        <p>
-                                            Members will have access to the Duck Lounge, a diverse
-                                            range of educational talks, workshops and resources,
-                                            social nights, and a wide network of other computer
-                                            science students and graduates.
-                                        </p>
-                                    </div>
-                                }
-                                colour={'yellow'}
-                            ></FAQ>
-                            <FAQ
-                                question={'How much does membership cost?'}
-                                answer={
                                     <p>
-                                        Club membership costs $10 for the full year. You can pay for
-                                        membership either online on our website, or in person at a
-                                        club event or the Duck Lounge by speaking to one of the
-                                        committee members.
-                                        <br />
-                                        <br />
-                                        <span className="font-bold">Note:</span> As AUSA is now
-                                        managing club memberships, we are currently waiting for
-                                        their new sign-up system to be finalised. You will be
-                                        required to register through their platform at a later date,
-                                        we want to assure you that all existing membership payments
-                                        for this year will be transferred over.
-                                    </p>
-                                }
-                                colour={'purple'}
-                            ></FAQ>
-                            <FAQ
-                                question={'Where and what is the Duck Lounge?'}
-                                answer={
-                                    <p>
-                                        The Duck Lounge is located at EM110 in the Engineering and
-                                        Maths building. It has a study space with power outlets and
-                                        couches, along with a Nintendo Switch for games. We also
-                                        sell snacks and drinks at affordable prices.
-                                    </p>
-                                }
-                                colour={'orange'}
-                            ></FAQ>
-                            <FAQ
-                                question={'Does the club have a Facebook page?'}
-                                answer={
-                                    <p>
-                                        Yes! We have a{' '}
-                                        <a
-                                            href={
-                                                LINKS.find((link) => link.name === 'Facebook')?.link
-                                            }
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="underline"
-                                        >
-                                            Facebook page
-                                        </a>{' '}
-                                        where we post all club events and general discussions.
+                                        Access to expert guest lectures, hands-on hackathon
+                                        mentorship, industrial field trips, and a chance to
+                                        represent the &quot;Double Champion&quot; department in
+                                        inter-college fests.
                                     </p>
                                 }
                                 colour={'yellow'}
                             ></FAQ>
                             <FAQ
-                                question={'How can I contact the CS Club?'}
+                                question={'How do I join?'}
                                 answer={
                                     <p>
-                                        If you have any questions or just want to get in touch with
-                                        us, visit our{' '}
-                                        <a href="/contact" className="underline">
-                                            contact page
+                                        Membership is open to all students of the CSBS department
+                                        who are ready to innovate and lead. Visit our{' '}
+                                        <a href="/join" className="underline">
+                                            join page
                                         </a>{' '}
-                                        or send a message in our{' '}
-                                        <a
-                                            href={
-                                                LINKS.find((link) => link.name === 'Discord')?.link
-                                            }
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="underline"
-                                        >
-                                            Discord
-                                        </a>
-                                        .
+                                        to get started.
                                     </p>
                                 }
                                 colour={'purple'}
@@ -414,15 +358,6 @@ export default async function AboutPage() {
                         </div>
                     </div>
                 </section>
-                <br />
-                <Paragraph>
-                    For detailed information about our club&apos;s rules and governance, please
-                    refer to our{' '}
-                    <a href="https://github.com/compsci-adl/Constitution" className="underline">
-                        Constitution
-                    </a>
-                    .
-                </Paragraph>
             </div>
         </main>
     );
