@@ -4,17 +4,20 @@ import gsap from 'gsap';
 import { CldImage } from 'next-cloudinary';
 import Image from 'next/image';
 import { useState, useRef, useLayoutEffect } from 'react';
+import { FaLinkedin } from 'react-icons/fa';
 
 interface President {
     name: string;
     role: string;
     image: string;
+    linkedin?: string; // Users can paste LinkedIn URLs here, e.g., 'https://linkedin.com/in/username'
 }
 
 interface TeamMember {
     name: string;
     role: string;
     image: string;
+    linkedin?: string; // Users can paste LinkedIn URLs here, e.g., 'https://linkedin.com/in/username'
 }
 
 interface TeamData {
@@ -30,6 +33,7 @@ const President: President = {
     name: 'Joe Francis',
     role: 'President',
     image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573392/Joe_Francis_u8hyf0.png',
+    linkedin: 'https://www.linkedin.com/in/joe-francis-joison-298304397/',
 };
 //Data of Members Ignite Club
 const TEAMS_DATA: TeamData[] = [
@@ -42,22 +46,26 @@ const TEAMS_DATA: TeamData[] = [
             name: 'Anushka Moon',
             role: 'Media Head',
             image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573391/Anushka_Moon_jcxyue.png',
+            linkedin: 'https://www.linkedin.com/in/anushkamoon2106/',
         },
         members: [
             {
                 name: 'Rudra Dalal',
                 role: 'Media Co-Head',
                 image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573392/Rudra_Dalal_qjse1u.png',
+                linkedin: 'https://www.linkedin.com/in/rudra-dalal-902661301/',
             },
             {
                 name: 'Animesh Tajne',
                 role: 'Media Team',
                 image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573390/Animesh_Tajne_zrolp8.png',
+                linkedin: 'https://www.linkedin.com/in/animesh-tajne/',
             },
             {
                 name: 'Om Tikle',
                 role: 'Media Team',
                 image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573391/Om_Tikle_bmecm1.png',
+                linkedin: 'https://www.linkedin.com/in/om-tikle-125b4a329/',
             },
         ],
     },
@@ -70,17 +78,20 @@ const TEAMS_DATA: TeamData[] = [
             name: 'Vedanti Adhe',
             role: 'Head of Documentation',
             image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573387/Vedanti_Adhe_uh53ex.png',
+            linkedin: 'https://www.linkedin.com/in/vedanti-adhe-98134a329/',
         },
         members: [
             {
                 name: 'Himangi Pardhi',
                 role: 'Documentation Team',
                 image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573387/Himangi_Pardhi_ngjkjt.png',
+                linkedin: 'https://www.linkedin.com/in/himangi-pardhi-802007330/',
             },
             {
                 name: 'Neha Burele',
                 role: 'Documentation Team',
                 image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573387/Nehe_Burele_pgznox.png',
+                linkedin: 'https://www.linkedin.com/in/neha-burele-4893092a6/',
             },
         ],
     },
@@ -93,27 +104,32 @@ const TEAMS_DATA: TeamData[] = [
             name: 'Samruddhi Barbakar',
             role: 'Head of Hospitality',
             image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573390/Samruddhi_Barbatkar_yydki1.png',
+            linkedin: 'https://www.linkedin.com/in/samruddhi-barbatkar-91370a314/',
         },
         members: [
             {
                 name: 'Sakshi Bende',
                 role: 'Hospitality Team',
                 image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573389/Sakshi_Bende_ufzyuk.png',
+                linkedin: 'https://www.linkedin.com/in/sakshi-bende/',
             },
             {
                 name: 'Anushka Chinchulkar',
                 role: 'Hospitality Team',
                 image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573388/Anushka_Chinchulkar_b1swpt.png',
+                linkedin: '',
             },
             {
                 name: 'Kankshi Patle',
                 role: 'Hospitality Team',
                 image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573389/Kankshi_Patle_t36iea.png',
+                linkedin: 'https://www.linkedin.com/in/kankshi-patle-a03a99316/',
             },
             {
                 name: 'Ojas Bramhane',
                 role: 'Hospitality Team',
                 image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573389/Ojas_Bramhane_sry9lf.png',
+                linkedin: 'https://www.linkedin.com/in/ojas-bramhane-691b18259/',
             },
         ],
     },
@@ -126,22 +142,26 @@ const TEAMS_DATA: TeamData[] = [
             name: 'Aryan Seth',
             role: 'Technical Head',
             image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573392/Aryan_Seth_uogg3f.png',
+            linkedin: 'https://www.linkedin.com/in/aryan-seth-/',
         },
         members: [
             {
                 name: 'Rugved Kadu',
                 role: 'Technical Team',
                 image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573394/Rugved_Kadu_eanahl.png',
+                linkedin: 'https://www.linkedin.com/in/kadurugved/',
             },
             {
                 name: 'Rachit Guha',
                 role: 'Technical Team',
                 image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573393/Rachit_Guha_wj4i19.png',
+                linkedin: 'https://www.linkedin.com/in/rachitguha/',
             },
             {
                 name: 'Sudeep Kuralkar',
                 role: 'Technical Team',
                 image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771584683/Sudeep_Kuralkar_jokpnq.png',
+                linkedin: 'https://www.linkedin.com/in/sudeep-kuralkar-20906525b/',
             },
         ],
     },
@@ -154,22 +174,26 @@ const TEAMS_DATA: TeamData[] = [
             name: 'Anushka Mahulkar',
             role: 'Head Of Finance',
             image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573387/Anushka_Mahulkar_e5xiyl.png',
+            linkedin: 'https://www.linkedin.com/in/anushkamahulkar/',
         },
         members: [
             {
-                name: 'Shreyasi Jumbe',
+                name: 'Shreyasi Jumbde',
                 role: 'Finance Team',
                 image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573388/Shreyasi_Jubme_ek7h43.png',
+                linkedin: 'https://www.linkedin.com/in/shreyasi-jumde-077b13317/',
             },
             {
                 name: 'Swejal Gujwar',
                 role: 'Finance Team',
                 image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573388/Swejal_Gujwar_i17xwu.png',
+                linkedin: 'https://www.linkedin.com/in/swejal-gujwar-96a58b336/',
             },
             {
                 name: 'Armata Alani',
                 role: 'Finance Team',
                 image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573388/Amrata_Ailani_tnfc2o.png',
+                linkedin: 'https://www.linkedin.com/in/amrata-ailani-21a131307/',
             },
         ],
     },
@@ -182,32 +206,38 @@ const TEAMS_DATA: TeamData[] = [
             name: 'Chaitanya Pawar',
             role: 'Head of Discipline',
             image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573387/chaitanya_Pawar_mu0rd8.png',
+            linkedin: 'https://www.linkedin.com/in/chaitanyapawar02/',
         },
         members: [
             {
                 name: 'Devanshu Barai',
                 role: 'Discipline Team',
                 image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573386/Devanshu_Barai_hdyfn4.png',
+                linkedin: 'https://www.linkedin.com/in/devanshu-barai-28a243342/',
             },
             {
                 name: 'Dhanesh Wahane',
                 role: 'Discipline Team',
                 image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573387/Dhanesh_Wahane_ibisin.png',
+                linkedin: 'https://www.linkedin.com/in/dhanesh-wahane-40047b330/',
             },
             {
                 name: 'Subodh Bobhate',
                 role: 'Discipline Team',
                 image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573387/Subodh_Bobhate_fu0di4.png',
+                linkedin: 'https://www.linkedin.com/in/subodh-bobhate-262a76310/',
             },
             {
                 name: 'Rohit Chokatkar',
                 role: 'Discipline Team',
                 image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573386/Rohit_Chokatkar_drryym.png',
+                linkedin: 'https://www.linkedin.com/in/rohit-chokatkar-a0352832a/',
             },
             {
                 name: 'Bhawarth Talkhande',
                 role: 'Discipline Team',
                 image: 'https://res.cloudinary.com/dodrojsly/image/upload/v1771573386/Bhawarth_Talkhande_zteoj8.png',
+                linkedin: 'https://www.linkedin.com/in/bhawarth-talkhande-768560352/',
             },
         ],
     },
@@ -332,24 +362,38 @@ export default function TeamsPage() {
 
                 {/* President Card */}
                 <div className="group relative mx-auto mb-20 w-full max-w-md">
-                    <div className="pointer-events-none absolute inset-0 translate-x-3 translate-y-3 rounded-xl border-[2px] border-white transition-all duration-300 group-hover:translate-x-4 group-hover:translate-y-4"></div>
-                    <div className="relative z-10 flex cursor-pointer items-center rounded-xl border-[2px] border-white bg-[#22201f] p-6">
-                        <div className="relative mr-6 h-28 w-28 shrink-0 overflow-hidden rounded-full border-2 border-gray-400 bg-black">
-                            <SmoothImage
-                                src={President.image}
-                                alt={President.name}
-                                fill
-                                className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                            />
+                    <div className="pointer-events-none absolute inset-0 translate-x-3 translate-y-3 rounded-xl border-[2px] border-white transition-all duration-300 group-hover:translate-x-4 group-hover:translate-y-4 group-hover:border-[#eab308]"></div>
+                    <div className="relative z-10 flex items-center justify-between rounded-xl border-[2px] border-white bg-[#22201f] p-6 transition-colors group-hover:bg-[#2a2827]">
+                        <div className="flex items-center">
+                            <div className="relative mr-6 h-28 w-28 shrink-0 overflow-hidden rounded-full border-2 border-gray-400 bg-black transition-colors duration-300 group-hover:border-[#eab308]">
+                                <SmoothImage
+                                    src={President.image}
+                                    alt={President.name}
+                                    fill
+                                    className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                                />
+                            </div>
+                            <div>
+                                <h2 className="mb-2 text-2xl font-bold text-white transition-colors duration-300 group-hover:text-[#eab308] md:text-3xl">
+                                    {President.name}
+                                </h2>
+                                <span className="inline-block border border-black bg-[#eab308] px-3 py-1 text-xs font-extrabold uppercase tracking-widest text-black">
+                                    {President.role}
+                                </span>
+                            </div>
                         </div>
-                        <div>
-                            <h2 className="mb-2 text-2xl font-bold text-white md:text-3xl">
-                                {President.name}
-                            </h2>
-                            <span className="inline-block border border-black bg-[#eab308] px-3 py-1 text-xs font-extrabold uppercase tracking-widest text-black">
-                                {President.role}
-                            </span>
-                        </div>
+                        {President.linkedin && (
+                            <a
+                                href={President.linkedin}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="absolute bottom-4 right-4 text-gray-400 transition-colors hover:text-[#eab308]"
+                                title="View LinkedIn"
+                                onClick={(e) => e.stopPropagation()}
+                            >
+                                <FaLinkedin size={24} />
+                            </a>
+                        )}
                     </div>
                 </div>
 
@@ -490,20 +534,36 @@ export default function TeamsPage() {
                                     </h2>
                                 </div>
 
-                                <div className="relative mb-6 aspect-square w-full max-w-[200px] shrink-0 overflow-hidden rounded-xl border-2 border-white bg-gray-900">
-                                    <SmoothImage
-                                        src={selectedTeam.head.image}
-                                        alt={selectedTeam.head.name}
-                                        fill
-                                        className="object-cover object-top"
-                                    />
+                                <div className="group/lead relative flex w-full flex-col items-start outline-none">
+                                    <div className="relative mb-6 aspect-square w-full max-w-[200px] shrink-0 overflow-hidden rounded-xl border-2 border-white bg-gray-900 transition-colors duration-300 group-hover/lead:border-[#eab308]">
+                                        <SmoothImage
+                                            src={selectedTeam.head.image}
+                                            alt={selectedTeam.head.name}
+                                            fill
+                                            className="object-cover object-top transition-transform duration-500 group-hover/lead:scale-105"
+                                        />
+                                    </div>
+                                    <h3 className="mb-2 text-3xl font-bold text-white transition-colors duration-300 group-hover/lead:text-[#eab308] md:text-4xl">
+                                        {selectedTeam.head.name}
+                                    </h3>
+                                    <div className="flex w-full items-center justify-between pr-4">
+                                        <p className="text-lg font-extrabold uppercase tracking-wider text-[#8b5cf6]">
+                                            {selectedTeam.head.role}
+                                        </p>
+                                        {selectedTeam.head.linkedin && (
+                                            <a
+                                                href={selectedTeam.head.linkedin}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="mt-1 text-gray-400 transition-colors hover:text-[#eab308]"
+                                                title="View LinkedIn"
+                                                onClick={(e) => e.stopPropagation()}
+                                            >
+                                                <FaLinkedin size={24} />
+                                            </a>
+                                        )}
+                                    </div>
                                 </div>
-                                <h3 className="mb-2 text-3xl font-bold text-white md:text-4xl">
-                                    {selectedTeam.head.name}
-                                </h3>
-                                <p className="text-lg font-extrabold uppercase tracking-wider text-[#8b5cf6]">
-                                    {selectedTeam.head.role}
-                                </p>
                             </div>
 
                             {/* Right Panel: Team Members */}
@@ -525,27 +585,44 @@ export default function TeamsPage() {
 
                                 <div className="grid grid-cols-1 gap-6 pb-6 sm:grid-cols-2">
                                     {selectedTeam.members.map((member, idx) => (
-                                        <div key={idx} className="group/member relative">
+                                        <div
+                                            key={idx}
+                                            className="group/member relative block outline-none"
+                                        >
                                             {/* Small offset box for member card */}
                                             <div className="pointer-events-none absolute inset-0 translate-x-1.5 translate-y-1.5 rounded border border-gray-600 transition-all group-hover/member:translate-x-2 group-hover/member:translate-y-2 group-hover/member:border-[#eab308]"></div>
 
-                                            <div className="relative z-10 flex items-center gap-4 rounded border-2 border-white bg-[#111] p-4">
-                                                <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-full border-2 border-gray-500 bg-black">
-                                                    <SmoothImage
-                                                        src={member.image}
-                                                        alt={member.name}
-                                                        fill
-                                                        className="object-cover object-top"
-                                                    />
+                                            <div className="relative z-10 flex items-center justify-between rounded border-2 border-white bg-[#111] p-4 transition-colors group-hover/member:bg-[#1a1a1a]">
+                                                <div className="flex items-center gap-4">
+                                                    <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-full border-2 border-gray-500 bg-black transition-colors group-hover/member:border-[#eab308]">
+                                                        <SmoothImage
+                                                            src={member.image}
+                                                            alt={member.name}
+                                                            fill
+                                                            className="object-cover object-top"
+                                                        />
+                                                    </div>
+                                                    <div className="flex flex-col">
+                                                        <h4 className="mb-1 text-lg font-bold leading-tight text-white transition-colors group-hover/member:text-[#eab308]">
+                                                            {member.name}
+                                                        </h4>
+                                                        <p className="text-xs font-bold uppercase tracking-wider text-gray-400">
+                                                            {member.role}
+                                                        </p>
+                                                    </div>
                                                 </div>
-                                                <div className="flex flex-col">
-                                                    <h4 className="mb-1 text-lg font-bold leading-tight text-white">
-                                                        {member.name}
-                                                    </h4>
-                                                    <p className="text-xs font-bold uppercase tracking-wider text-gray-400">
-                                                        {member.role}
-                                                    </p>
-                                                </div>
+                                                {member.linkedin && (
+                                                    <a
+                                                        href={member.linkedin}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="ml-2 mt-auto text-gray-400 transition-colors hover:text-[#eab308]"
+                                                        title="View LinkedIn"
+                                                        onClick={(e) => e.stopPropagation()}
+                                                    >
+                                                        <FaLinkedin size={20} />
+                                                    </a>
+                                                )}
                                             </div>
                                         </div>
                                     ))}
