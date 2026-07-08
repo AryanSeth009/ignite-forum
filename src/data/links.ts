@@ -1,12 +1,4 @@
-import {
-    /* FaDiscord, */
-    FaEnvelope,
-    /*  FaFacebook,
- FaGithub, */
-    FaInstagram,
-    FaLinkedin,
-} from /* FaTiktok,
-FaYoutube, */ 'react-icons/fa';
+import { FaEnvelope, FaInstagram, FaLinkedin } from 'react-icons/fa';
 
 export const LINKS = [
     { name: 'Email', link: 'mailto:ignite.csbs@gmail.com', icon: FaEnvelope },

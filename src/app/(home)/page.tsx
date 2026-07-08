@@ -63,7 +63,7 @@ export default async function HomePage() {
                             <div className="relative z-10 mt-4 border-2 border-white bg-grey px-4 py-4 md:px-6 md:py-6">
                                 <p className="text-lg md:text-xl">
                                     IGNITE FORUM is the premier multidisciplinary hub of SVPCET
-                                    Nagpur's Computer Science & Business Systems department. We
+                                    Nagpur&apos;s Computer Science & Business Systems department. We
                                     bridge the gap between technical intelligence and real-world
                                     business systems through immersive industry exposure and
                                     relentless competitive drive.
@@ -73,7 +73,7 @@ export default async function HomePage() {
 
                         <div>
                             <div className="relative z-10 mt-4 flex flex-row items-center text-2xl font-black lg:text-3xl">
-                                <h3 className="">The 'Double Victory'</h3>
+                                <h3 className="">The &apos;Double Victory&apos;</h3>
                                 <Image
                                     src="/images/yellow-star.svg"
                                     alt="Yellow Star"
@@ -156,7 +156,7 @@ export default async function HomePage() {
                                     <p>
                                         The{' '}
                                         <span className="relative inline-block">
-                                            'Mind to Market'
+                                            &apos;Mind to Market&apos;
                                             <span className="absolute left-0 top-0 h-full w-full bg-orange opacity-30"></span>
                                         </span>{' '}
                                         initiative powers our startup culture, converting raw
@@ -179,7 +179,7 @@ export default async function HomePage() {
                                     <p>
                                         From{' '}
                                         <span className="relative inline-block">
-                                            'Stroke of Art'
+                                            &apos;Stroke of Art&apos;
                                             <span className="absolute left-0 top-0 h-full w-full bg-yellow opacity-30"></span>
                                         </span>{' '}
                                         victories to undefeated streaks in Football and Volleyball,

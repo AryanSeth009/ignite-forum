@@ -4,7 +4,7 @@ import { IoCaretDown, IoCheckmark } from 'react-icons/io5';
 
 interface AutocompleteProps<TOption> {
     value: TOption | null;
-    onChange: (option: TOption) => void;
+    onChange: (option: TOption | null) => void;
     options: TOption[];
     displayOptionStr: (option: TOption) => string;
     placeholder?: string;
@@ -29,7 +29,7 @@ export default function Autocomplete<TOption>({
               );
 
     return (
-        <Combobox value={value} onChange={onChange}>
+        <Combobox value={value} onChange={onChange as any}>
             <div className={`${className} relative w-full`}>
                 <div className="relative w-full">
                     <Combobox.Input
