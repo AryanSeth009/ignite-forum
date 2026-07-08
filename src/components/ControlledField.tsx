@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import type { Control, FieldPath, FieldValues } from 'react-hook-form';
 import { useController } from 'react-hook-form';
 import type { FieldProps } from './Field';
