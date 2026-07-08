@@ -24,7 +24,7 @@ export default function EmailBody({ firstName }: BodyProps) {
                     alt="Welcome to the CS Club!"
                 />
             </picture>
-            <table className="w-full pr-4 text-grey md:pr-8 dark:text-white">
+            <table className="w-full pr-4 text-grey dark:text-white md:pr-8">
                 <tr>
                     <td className="w-1">
                         <h2>{'>'}</h2>
@@ -65,7 +65,7 @@ export default function EmailBody({ firstName }: BodyProps) {
             </div>
             <div className="flex flex-col md:flex-row">
                 <div className="md:w-1/2">
-                    <table className="w-full border-spacing-0 pr-4 text-grey md:pr-8 dark:text-white">
+                    <table className="w-full border-spacing-0 pr-4 text-grey dark:text-white md:pr-8">
                         <tr>
                             <td className="w-1">
                                 <h2>{'>'}</h2>
@@ -78,7 +78,7 @@ export default function EmailBody({ firstName }: BodyProps) {
                             </td>
                         </tr>
                         <tr>
-                            <td className="pl-5 text-grey md:pr-6 dark:text-white" colSpan={2}>
+                            <td className="pl-5 text-grey dark:text-white md:pr-6" colSpan={2}>
                                 <p>
                                     What is the Duck Lounge? Where is the Duck Lounge? Who is the
                                     Duck Lounge? More truer questions have never been asked. Our CS
