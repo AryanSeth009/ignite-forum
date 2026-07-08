@@ -33,11 +33,13 @@ export default async function AboutPage() {
                     <div className="mr-2 flex">
                         <FancyRectangle colour={'purple'} offset={'8'} filled rounded>
                             <Image
-                                src={'/images/about/meet-and-greet.jpg'}
-                                alt={'Meet and Greet'}
+                                src={'/images/about/persistent-visit.jpg'}
+                                alt={'Persistent Visit'}
                                 width={1210}
                                 height={800}
-                                className="rounded-xl border-2 border-white"
+                                className="rounded-xl border-2 border-white object-cover"
+                                priority
+                                sizes="(max-width: 768px) 100vw, 50vw"
                             ></Image>
                         </FancyRectangle>
                     </div>
@@ -156,16 +158,29 @@ export default async function AboutPage() {
                     <div>
                         <Image src="/images/crosses.svg" alt="Crosses" height={80} width={237} />
                         <Image
-                            src={'/images/about/duck-ctf.jpg'}
-                            alt={'Duck CTF'}
+                            src={'/images/about/industrial-visit.jpg'}
+                            alt={'Industrial Visit'}
                             width={500}
                             height={500}
-                            className="rounded-xl border-2 border-white"
+                            className="aspect-square rounded-xl border-2 border-white object-cover"
+                            sizes="(max-width: 768px) 100vw, 33vw"
                         ></Image>
                     </div>
                 </section>
                 {/* Competitions & Projects */}
                 <section className="mt-10 flex flex-col gap-10 md:flex-row">
+                    <div className="mr-2 flex justify-center lg:justify-start">
+                        <FancyRectangle colour={'purple'} offset={'8'} filled rounded>
+                            <Image
+                                src={'/images/about/business-conclave.jpg'}
+                                alt={'Business Conclave'}
+                                width={1317}
+                                height={750}
+                                className="rounded-xl border-2 border-white object-cover"
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                            ></Image>
+                        </FancyRectangle>
+                    </div>
                     <div className="flex h-fit flex-row self-center border-b-2 border-t-2 border-white bg-grey px-4">
                         <Image
                             src="/images/yellow-triangle.svg"
@@ -184,40 +199,32 @@ export default async function AboutPage() {
                             team projects that translate technical prowess into real-world impact.
                         </p>
                     </div>
-                    <div className="mr-2 flex justify-center lg:justify-end">
-                        <FancyRectangle colour={'purple'} offset={'8'} filled rounded>
-                            <Image
-                                src={'/images/about/quiz-night.jpg'}
-                                alt={'Quiz Night'}
-                                width={1317}
-                                height={750}
-                                className="rounded-xl border-2 border-white"
-                            ></Image>
-                        </FancyRectangle>
-                    </div>
                 </section>
                 {/* Welcome to join */}
                 <section className="mt-10 grid flex-col gap-6 md:grid-cols-3">
                     <Image
-                        src={'/images/about/cocktail-night.jpg'}
-                        alt={'Cocktail Night'}
+                        src={'/images/about/insight-2k25.jpg'}
+                        alt={'Insight 2k25'}
                         width={500}
                         height={500}
-                        className="rounded-xl border-2 border-white"
+                        className="aspect-square rounded-xl border-2 border-white object-cover"
+                        sizes="(max-width: 768px) 100vw, 33vw"
                     ></Image>
                     <Image
-                        src={'/images/about/duck-ctf-2.jpg'}
-                        alt={'Duck CTF 2'}
+                        src={'/images/about/classroom-session.jpg'}
+                        alt={'Classroom Session'}
                         width={500}
                         height={500}
-                        className="rounded-xl border-2 border-white"
+                        className="aspect-square rounded-xl border-2 border-white object-cover"
+                        sizes="(max-width: 768px) 100vw, 33vw"
                     ></Image>
                     <Image
-                        src={'/images/about/ai-panel.jpg'}
-                        alt={'AI Panel'}
+                        src={'/images/about/svpcet-presentation.jpg'}
+                        alt={'SVPCET Presentation'}
                         width={500}
                         height={500}
-                        className="rounded-xl border-2 border-white"
+                        className="aspect-square rounded-xl border-2 border-white object-cover"
+                        sizes="(max-width: 768px) 100vw, 33vw"
                     ></Image>
                 </section>
                 <section className="relative mt-8">
@@ -342,18 +349,20 @@ export default async function AboutPage() {
                         </div>
                         <div className="flex flex-col gap-8">
                             <Image
-                                src={'/images/about/o-week.jpg'}
-                                alt={'O Week'}
+                                src={'/images/about/audience-hall.jpg'}
+                                alt={'Audience Hall'}
                                 width={1055.5}
                                 height={500}
-                                className="rounded-xl border-2 border-white"
+                                className="aspect-video rounded-xl border-2 border-white object-cover"
+                                sizes="(max-width: 768px) 100vw, 33vw"
                             ></Image>
                             <Image
-                                src={'/images/about/women-in-cs.jpg'}
-                                alt={'Women in CS'}
+                                src={'/images/about/svpcet-presentation.jpg'}
+                                alt={'Presentation Session'}
                                 width={1342}
                                 height={500}
-                                className="rounded-xl border-2 border-white"
+                                className="aspect-video rounded-xl border-2 border-white object-cover"
+                                sizes="(max-width: 768px) 100vw, 33vw"
                             ></Image>
                         </div>
                     </div>
